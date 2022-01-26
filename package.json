@@ -1,11 +1,13 @@
 {
   "name": "@oreon/invoice-payment",
   "packageManager": "yarn@3.1.1",
+  "description": "Web application + API that allows customers to pay for invoices in BTC",
   "private": true,
   "scripts": {
     "all:format": "prettier --ignore-unknown --write .",
     "backend:dev": "yarn workspace @oreon/invoice-payment-backend dev",
     "backend:lint": "yarn workspace @oreon/invoice-payment-backend lint",
+    "backend:test": "yarn workspace @oreon/invoice-payment-backend test",
     "backend:typecheck": "yarn workspace @oreon/invoice-payment-backend typecheck",
     "postinstall": "husky install"
   },
