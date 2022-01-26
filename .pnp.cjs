@@ -2817,6 +2817,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/jest", "npm:27.4.0"],
             ["@types/node", "npm:17.0.12"],
             ["axios", "npm:0.25.0"],
+            ["axios-extensions", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:3.1.3"],
             ["babel-jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.4.6"],
             ["express", "npm:4.17.2"],
             ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.4.7"],
@@ -3010,6 +3011,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./.yarn/cache/@types-json-schema-npm-7.0.9-361918cff3-259d0e25f1.zip/node_modules/@types/json-schema/",
           "packageDependencies": [
             ["@types/json-schema", "npm:7.0.9"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["@types/lru-cache", [
+        ["npm:4.1.3", {
+          "packageLocation": "./.yarn/cache/@types-lru-cache-npm-4.1.3-be381e25a7-ee8b42884d.zip/node_modules/@types/lru-cache/",
+          "packageDependencies": [
+            ["@types/lru-cache", "npm:4.1.3"]
           ],
           "linkType": "HARD",
         }]
@@ -3612,6 +3622,32 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["axios", "npm:0.25.0"],
             ["follow-redirects", "virtual:a1c287d287cceec925a9c0ff143359f3710be8008f8559da00a15e4d93f76849e9493b8b7760d073ae605ea56d1482d54174c007b28cbf6b38332d152576190f#npm:1.14.7"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["axios-extensions", [
+        ["npm:3.1.3", {
+          "packageLocation": "./.yarn/cache/axios-extensions-npm-3.1.3-1c10b3d984-d308d0179e.zip/node_modules/axios-extensions/",
+          "packageDependencies": [
+            ["axios-extensions", "npm:3.1.3"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:3.1.3", {
+          "packageLocation": "./.yarn/__virtual__/axios-extensions-virtual-e79e691017/0/cache/axios-extensions-npm-3.1.3-1c10b3d984-d308d0179e.zip/node_modules/axios-extensions/",
+          "packageDependencies": [
+            ["axios-extensions", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:3.1.3"],
+            ["@types/axios", null],
+            ["@types/lru-cache", "npm:4.1.3"],
+            ["axios", "npm:0.25.0"],
+            ["lru-cache", "npm:5.1.1"],
+            ["tslib", "npm:1.14.1"],
+            ["util", "npm:0.11.1"]
+          ],
+          "packagePeers": [
+            "@types/axios",
+            "axios"
           ],
           "linkType": "HARD",
         }]
@@ -5595,6 +5631,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["inherits", [
+        ["npm:2.0.3", {
+          "packageLocation": "./.yarn/cache/inherits-npm-2.0.3-401e64b080-78cb8d7d85.zip/node_modules/inherits/",
+          "packageDependencies": [
+            ["inherits", "npm:2.0.3"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:2.0.4", {
           "packageLocation": "./.yarn/cache/inherits-npm-2.0.4-c66b3957a0-4a48a73384.zip/node_modules/inherits/",
           "packageDependencies": [
@@ -6613,6 +6656,14 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["lru-cache", [
+        ["npm:5.1.1", {
+          "packageLocation": "./.yarn/cache/lru-cache-npm-5.1.1-f475882a51-c154ae1cbb.zip/node_modules/lru-cache/",
+          "packageDependencies": [
+            ["lru-cache", "npm:5.1.1"],
+            ["yallist", "npm:3.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:6.0.0", {
           "packageLocation": "./.yarn/cache/lru-cache-npm-6.0.0-b4c8668fe1-f97f499f89.zip/node_modules/lru-cache/",
           "packageDependencies": [
@@ -8536,6 +8587,16 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD",
         }]
       ]],
+      ["util", [
+        ["npm:0.11.1", {
+          "packageLocation": "./.yarn/cache/util-npm-0.11.1-d2633dea18-80bee6a2ed.zip/node_modules/util/",
+          "packageDependencies": [
+            ["util", "npm:0.11.1"],
+            ["inherits", "npm:2.0.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
       ["util-deprecate", [
         ["npm:1.0.2", {
           "packageLocation": "./.yarn/cache/util-deprecate-npm-1.0.2-e3fe1a219c-474acf1146.zip/node_modules/util-deprecate/",
@@ -8797,6 +8858,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["yallist", [
+        ["npm:3.1.1", {
+          "packageLocation": "./.yarn/cache/yallist-npm-3.1.1-a568a556b4-48f7bb00dc.zip/node_modules/yallist/",
+          "packageDependencies": [
+            ["yallist", "npm:3.1.1"]
+          ],
+          "linkType": "HARD",
+        }],
         ["npm:4.0.0", {
           "packageLocation": "./.yarn/cache/yallist-npm-4.0.0-b493d9e907-343617202a.zip/node_modules/yallist/",
           "packageDependencies": [

@@ -30,5 +30,6 @@ export const getPricesForCoinsInCurrencies = async (
         ids: coin.join(","),
         vs_currencies: currencies.join(","),
       },
+      cache: false,
     }
   );

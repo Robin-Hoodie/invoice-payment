@@ -1,10 +1,10 @@
 import express from "express";
-import { getPriceForBitcoinInCurrencyFiat } from "./clients/coin-gecko";
+import { getPriceForBitcoinInCurrencyFiat } from "./pricing";
 
 const app = express();
 const port = 3000;
 
-app.get("/", async (req, res) => {
+app.get("/", async (_, res) => {
   const priceForBitcoinInNOK = await getPriceForBitcoinInCurrencyFiat("nok");
   res.send({ priceForBitcoinInNOK });
 });
