@@ -5,11 +5,14 @@ import {
   getPricesForCoinsInCurrencies,
 } from "../clients/coin-gecko";
 
-export const getPriceForBitcoinInCurrencyFiat = async (
-  currency: CurrencyFiat
-) => {
+const isSupportedCurrency = (
+  supportedCurrencies: string[],
+  currency: string
+): currency is CurrencyFiat => supportedCurrencies.includes(currency);
+
+export const getPriceForBitcoinInCurrencyFiat = async (currency: string) => {
   const supportedCurrencies = await getSupportedCurrencies();
-  if (!supportedCurrencies.includes(currency)) {
+  if (!isSupportedCurrency(supportedCurrencies, currency)) {
     throw new Error(
       `Currency ${currency} is not supported by the CoinGecko API`
     );
