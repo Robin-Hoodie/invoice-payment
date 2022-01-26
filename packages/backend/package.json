@@ -1,0 +1,14 @@
+{
+  "name": "@oreon/invoice-payment-backend",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --transpile-only ./src/index.ts",
+    "lint": "eslint . --ext .ts,.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/node": "^17.0.12",
+    "ts-node-dev": "^1.1.8"
+  }
+}
