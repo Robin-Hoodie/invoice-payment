@@ -12,10 +12,10 @@ describe("XPub", () => {
         // Generated from http://bip32.org/
         "xprv9s21ZrQH143K2JF8RafpqtKiTbsbaxEeUaMnNHsm5o6wCW3z8ySyH4UxFVSfZ8n7ESu7fgir8imbZKLYVBxFPND1pniTZ81vKfd45EHKX73"
       );
-    expectHexEqualsActual(version, "0488ade4");
-    expectHexEqualsActual(depth, "00");
-    expectHexEqualsActual(parentKeyFingerPrint, "00000000");
-    expectHexEqualsActual(childIndex, "00000000");
+    expect(version).toBe("0488ade4");
+    expect(depth).toBe("00");
+    expect(parentKeyFingerPrint).toBe("00000000");
+    expect(childIndex).toBe("00000000");
     expectHexEqualsActual(
       chainCode,
       "180c998615636cd875aa70c71cfa6b7bf570187a56d8c6d054e60b644d13e9d3"
@@ -30,10 +30,10 @@ describe("XPub", () => {
   it("should correctly decode the given extended public key", () => {
     const { version, depth, parentKeyFingerPrint, childIndex, chainCode, key } =
       decodeExtendedKey(legacyAccountBTC.extendedKey);
-    expectHexEqualsActual(version, "0488b21e");
-    expectHexEqualsActual(depth, "03");
-    expectHexEqualsActual(parentKeyFingerPrint, "ae78ca03");
-    expectHexEqualsActual(childIndex, "80000000");
+    expect(version).toBe("0488b21e");
+    expect(depth).toBe("03");
+    expect(parentKeyFingerPrint).toBe("ae78ca03");
+    expect(childIndex).toBe("80000000");
     expectHexEqualsActual(
       chainCode,
       "aac6c9b273c9ff45e46e322f7a5576c208fc78e09ddbfb1bdfb611b2cfe57ef1"

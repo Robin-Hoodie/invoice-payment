@@ -3,6 +3,7 @@ import { pointMultiply, pointAdd } from "tiny-secp256k1";
 import { GENERATOR_POINT } from "./secp256k1-constants";
 import { decodeExtendedKey } from "./extended-key";
 import { pubKeyToLegacyAddress } from "./address";
+import { isXPubDecoded } from ".";
 
 const maxIndexNormalChildKeys = 2 ** 31;
 
@@ -65,20 +66,29 @@ export const generateAddressFromExtendedPubKey = (
       `Index ${index} must be smaller than allowed index ${maxIndexNormalChildKeys}`
     );
   }
+
   const decodedExtendedKey = decodeExtendedKey(extendedKey);
 
-  const { key: pubKey, chainCode } = decodedExtendedKey;
+  if (isXPubDecoded(decodedExtendedKey)) {
+    const { pubKey: pubKeyIntermediate, chainCode } =
+      generatePubKeyAndChainCode(
+        decodedExtendedKey.key,
+        decodedExtendedKey.chainCode,
+        getIndexAsBuffer(0) // Generate receival address based on BIP-44
+      );
 
-  const { pubKey: pubKeyLevelFour, chainCode: chainCodeLevelFour } =
-    generatePubKeyAndChainCode(pubKey, chainCode, getIndexAsBuffer(0));
+    const indexAsBuffer = getIndexAsBuffer(index);
 
-  const indexAsBuffer = getIndexAsBuffer(index);
+    const { pubKey } = generatePubKeyAndChainCode(
+      pubKeyIntermediate,
+      chainCode,
+      indexAsBuffer
+    );
 
-  const { pubKey: pubKeyReceival } = generatePubKeyAndChainCode(
-    pubKeyLevelFour,
-    chainCodeLevelFour,
-    indexAsBuffer
+    return pubKeyToLegacyAddress(pubKey);
+  }
+
+  throw new Error(
+    "Generation of addresses is only possible based on XPubs for now"
   );
-
-  return pubKeyToLegacyAddress(pubKeyReceival);
 };

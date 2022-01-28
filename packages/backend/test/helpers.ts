@@ -8,3 +8,15 @@ export const legacyAccountBTC = {
   ],
   addresses: ["195nYLPg9NTdCzTeZT9Db5txc1FRAJC7UH"],
 };
+
+export const segWitAccountBTC = {
+  extendedKey:
+    "zpub6rhiffzBcHgg2pcxDqGABAG92kvZMNPT32wrKLg97FWzHcwussvBaUqY8agEWiQT2QH1uoCbHz51cZVJJTnmnkdhtc7RnFgsYwiVaGtCUS8",
+  addresses: ["bc1qmw8ahz6a68j4cvgmlt3v00js0mw2pvpg44czur"],
+};
+
+export const tapRootAccountBTC = {
+  extendedKey:
+    "tr([5c9e228d/86'/0'/0']xpub6DRrbqJmCjK1KYTHQZs1C3pE7XrJcUHfYPoXi4UmYSDNsQjhp2z24YHRrCzyPJAGgbvmUqoyo1kvQxQp9jXhyKgfxfRdos2DJM7ReD9ddkK/<0;1>/*)",
+  addresses: ["bc1p0g23k24ksj444v65f3jmg9y59cj82x2mp5kn7zdsnlfvmfmaxxusz7cddv"],
+};
