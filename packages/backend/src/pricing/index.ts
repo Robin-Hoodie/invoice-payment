@@ -33,7 +33,5 @@ export const getPriceForBitcoinInCurrencyFiat = async (currency: string) => {
     [bitcoinId],
     [currency]
   );
-  console.log("Hello, world!");
-
   return pricesForCoinsInCurrencies[bitcoinId][currency];
 };
