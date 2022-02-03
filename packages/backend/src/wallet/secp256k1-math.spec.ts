@@ -1,22 +1,36 @@
 import { pointAdd as pointAddTinySecp256k1 } from "tiny-secp256k1";
-import { GENERATOR_POINT, pointDouble, pointAdd } from "./secp256k1-math";
+import { pointDouble, pointAdd } from "./secp256k1-math";
 
-// We're using the tiny-secp256k1 to verify
+/**
+ *  We're using the tiny-secp256k1 library to test against our expectations
+ **/
 
-// TODO: uncompressed w/ uncompress function?
-export const GENERATOR_POINT_UNCOMPRESSED = Buffer.concat([
-  Buffer.from("02", "hex"),
-  GENERATOR_POINT.slice(1, 1 + 256 / 8),
-]);
+// Taken some points from https://asecuritysite.com/ecc/ecc_points2 w/ type secp256k1 & starting point 200
+const pointOneUncompressed = Buffer.from(
+  "042f01e5e15cca351daff3843fb70f3c2f0a1bdd05e5af888a67784ef3e10a2a015c4da8a741539949293d082a132d13b4c2e213d6ba5b7617b5da2cb76cbde904",
+  "hex"
+);
+const pointOneCompressed = Buffer.from(
+  "022f01e5e15cca351daff3843fb70f3c2f0a1bdd05e5af888a67784ef3e10a2a01",
+  "hex"
+);
+const pointTwoUnCompressed = Buffer.from(
+  "04c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee51ae168fea63dc339a3c58419466ceaeef7f632653266d0e1236431a950cfe52a",
+  "hex"
+);
+const pointTwoCompressed = Buffer.from(
+  "02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+  "hex"
+);
 
 describe("Secp256k1 Mathematics", () => {
-  it("should return the result of doubling a point as an uncompressed point", () => {
-    const pointDoubledActual = pointDouble(GENERATOR_POINT, {
+  it("should return the result of doubling an uncompressed point as an uncompressed point", () => {
+    const pointDoubledActual = pointDouble(pointOneUncompressed, {
       compressed: false,
     });
     const pointDoubledExpected = pointAddTinySecp256k1(
-      GENERATOR_POINT,
-      GENERATOR_POINT,
+      pointOneUncompressed,
+      pointOneUncompressed,
       false
     );
     expect(pointDoubledActual.toString("hex")).toBe(
@@ -24,13 +38,13 @@ describe("Secp256k1 Mathematics", () => {
     );
   });
 
-  it("should return the result of doubling as a compressed point", () => {
-    const pointDoubledActual = pointDouble(GENERATOR_POINT, {
+  it("should return the result of doubling an uncompressed point as a compressed point", () => {
+    const pointDoubledActual = pointDouble(pointOneUncompressed, {
       compressed: true,
     });
     const pointDoubledExpected = pointAddTinySecp256k1(
-      GENERATOR_POINT,
-      GENERATOR_POINT,
+      pointOneUncompressed,
+      pointOneUncompressed,
       true
     );
     expect(pointDoubledActual.toString("hex")).toBe(
@@ -38,13 +52,13 @@ describe("Secp256k1 Mathematics", () => {
     );
   });
 
-  it("should be able to handle doubling a compressed point and returning it as an uncompressed point", () => {
-    const pointDoubledActual = pointDouble(GENERATOR_POINT_UNCOMPRESSED, {
+  it("should return the result of doubling an compressed point as an uncompressed point", () => {
+    const pointDoubledActual = pointDouble(pointOneCompressed, {
       compressed: false,
     });
     const pointDoubledExpect = pointAddTinySecp256k1(
-      GENERATOR_POINT,
-      GENERATOR_POINT,
+      pointOneCompressed,
+      pointOneCompressed,
       false
     );
     expect(pointDoubledActual.toString("hex")).toBe(
@@ -52,13 +66,13 @@ describe("Secp256k1 Mathematics", () => {
     );
   });
 
-  it("should be able to handle doubling a compressed point and returning is as a compressed point", () => {
-    const pointDoubledActual = pointDouble(GENERATOR_POINT_UNCOMPRESSED, {
+  it("should return the result of doubling a compressed point as a compressed point", () => {
+    const pointDoubledActual = pointDouble(pointOneCompressed, {
       compressed: true,
     });
     const pointDoubledExpect = pointAddTinySecp256k1(
-      GENERATOR_POINT,
-      GENERATOR_POINT,
+      pointOneCompressed,
+      pointOneCompressed,
       true
     );
     expect(pointDoubledActual.toString("hex")).toBe(
@@ -66,53 +80,61 @@ describe("Secp256k1 Mathematics", () => {
     );
   });
 
-  it("should return the sum of 2 points as an uncompressed point", () => {
-    const pointA = pointDouble(GENERATOR_POINT, { compressed: false });
-    const pointB = pointDouble(
-      pointDouble(GENERATOR_POINT, { compressed: false }),
+  it("should return the sum of 2 uncompressed points as an uncompressed point", () => {
+    const pointSumActual = pointAdd(
+      pointOneUncompressed,
+      pointTwoUnCompressed,
       { compressed: false }
     );
-    const pointSumActual = pointAdd(pointA, pointB, { compressed: false });
-    const pointSumExpected = pointAddTinySecp256k1(pointA, pointB, false);
+    const pointSumExpected = pointAddTinySecp256k1(
+      pointOneUncompressed,
+      pointTwoUnCompressed,
+      false
+    );
     expect(pointSumActual.toString("hex")).toBe(
       pointSumExpected.toString("hex")
     );
   });
 
-  it("should return the sum of 2 points as a compressed point", () => {
-    const pointA = pointDouble(GENERATOR_POINT, { compressed: false });
-    const pointB = pointDouble(
-      pointDouble(GENERATOR_POINT, { compressed: false }),
-      { compressed: false }
-    );
-    const pointSumActual = pointAdd(pointA, pointB, { compressed: true });
-    const pointSumExpected = pointAddTinySecp256k1(pointA, pointB, true);
-    expect(pointSumActual.toString("hex")).toBe(
-      pointSumExpected.toString("hex")
-    );
-  });
-
-  it("should be able to handle adding two uncompressed points and returning the sum as an uncompressed point", () => {
-    const pointA = pointDouble(GENERATOR_POINT, { compressed: true });
-    const pointB = pointDouble(
-      pointDouble(GENERATOR_POINT, { compressed: true }),
+  it("should return the sum of 2 uncompressed points as a compressed point", () => {
+    const pointSumActual = pointAdd(
+      pointOneUncompressed,
+      pointTwoUnCompressed,
       { compressed: true }
     );
-    const pointSumActual = pointAdd(pointA, pointB, { compressed: false });
-    const pointSumExpected = pointAddTinySecp256k1(pointA, pointB, false);
+    const pointSumExpected = pointAddTinySecp256k1(
+      pointOneUncompressed,
+      pointTwoUnCompressed,
+      true
+    );
     expect(pointSumActual.toString("hex")).toBe(
       pointSumExpected.toString("hex")
     );
   });
 
-  it("should be able to handle adding two uncompressed point and returning the sum as a compressed point", () => {
-    const pointA = pointDouble(GENERATOR_POINT, { compressed: false });
-    const pointB = pointDouble(
-      pointDouble(GENERATOR_POINT, { compressed: false }),
-      { compressed: false }
+  it("should return the sum of 2 compressed points as an uncompressed point", () => {
+    const pointSumActual = pointAdd(pointOneCompressed, pointTwoCompressed, {
+      compressed: false,
+    });
+    const pointSumExpected = pointAddTinySecp256k1(
+      pointOneCompressed,
+      pointTwoCompressed,
+      false
     );
-    const pointSumActual = pointAdd(pointA, pointB, { compressed: true });
-    const pointSumExpected = pointAddTinySecp256k1(pointA, pointB, true);
+    expect(pointSumActual.toString("hex")).toBe(
+      pointSumExpected.toString("hex")
+    );
+  });
+
+  it("should return the sum of 2 compressed points as a compressed point", () => {
+    const pointSumActual = pointAdd(pointOneCompressed, pointTwoCompressed, {
+      compressed: true,
+    });
+    const pointSumExpected = pointAddTinySecp256k1(
+      pointOneCompressed,
+      pointTwoCompressed,
+      true
+    );
     expect(pointSumActual.toString("hex")).toBe(
       pointSumExpected.toString("hex")
     );

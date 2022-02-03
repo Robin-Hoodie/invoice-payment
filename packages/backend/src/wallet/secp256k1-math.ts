@@ -21,20 +21,10 @@ export const PRIME_MODULUS =
   2n ** 4n -
   1n;
 
-const GENERATOR_POINT_X = Buffer.from(
-  "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+export const GENERATOR_POINT = Buffer.from(
+  "0479be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8",
   "hex"
 );
-const GENERATOR_POINT_Y = Buffer.from(
-  "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8",
-  "hex"
-);
-
-export const GENERATOR_POINT = Buffer.concat([
-  Buffer.from("04", "hex"),
-  GENERATOR_POINT_X,
-  GENERATOR_POINT_Y,
-]);
 
 const extractX = (point: Buffer) =>
   BigInt(`0x${point.slice(1, 1 + 256 / 8).toString("hex")}`);
