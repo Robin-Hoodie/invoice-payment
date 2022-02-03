@@ -1622,6 +1622,7 @@ __metadata:
     axios: ^0.25.0
     axios-extensions: ^3.1.3
     babel-jest: ^27.4.6
+    bigint-mod-arith: ^3.0.2
     bs58check: ^2.1.2
     express: ^4.17.2
     jest: ^27.4.7
@@ -2428,6 +2429,13 @@ __metadata:
   dependencies:
     safe-buffer: ^5.0.1
   checksum: 957101d6fd09e1903e846fd8f69fd7e5e3e50254383e61ab667c725866bec54e5ece5ba49ce385128ae48f9ec93a26567d1d5ebb91f4d56ef4a9cc0d5a5481e8
+  languageName: node
+  linkType: hard
+
+"bigint-mod-arith@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "bigint-mod-arith@npm:3.0.2"
+  checksum: 1ae37382a1586ad2564670503052e23c954081846d11ad0e00d3a9dafbb6584ee00154d9ff17f4c76f704ae1560fbdaccdd6b8ca257abf85ca7129be50af27d0
   languageName: node
   linkType: hard
 

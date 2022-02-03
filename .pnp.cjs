@@ -2820,6 +2820,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["axios", "npm:0.25.0"],
             ["axios-extensions", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:3.1.3"],
             ["babel-jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.4.6"],
+            ["bigint-mod-arith", "npm:3.0.2"],
             ["bs58check", "npm:2.1.2"],
             ["express", "npm:4.17.2"],
             ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.4.7"],
@@ -3900,6 +3901,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageDependencies": [
             ["base-x", "npm:3.0.9"],
             ["safe-buffer", "npm:5.2.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["bigint-mod-arith", [
+        ["npm:3.0.2", {
+          "packageLocation": "./.yarn/cache/bigint-mod-arith-npm-3.0.2-af17aa506a-1ae37382a1.zip/node_modules/bigint-mod-arith/",
+          "packageDependencies": [
+            ["bigint-mod-arith", "npm:3.0.2"]
           ],
           "linkType": "HARD",
         }]
