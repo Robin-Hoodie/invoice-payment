@@ -6,3 +6,7 @@ extends:
   - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - prettier
+overrides:
+  - files: "./packages/backend/jest-resolver.js"
+    rules:
+      "@typescript-eslint/no-var-requires": "off"
