@@ -1,5 +1,6 @@
 import { modInv, modPow } from "bigint-mod-arith";
 import { Bit } from "../types";
+import { bufferToBigInt } from "../utils";
 /**
  * A lot of the math and numbers here come from https://learnmeabitcoin.com/technical/ecdsa & https://learnmeabitcoin.com/technical/public-key
  * These functions exist in other libraries (e.g. tiny-secp256k1),
@@ -29,11 +30,8 @@ export const GENERATOR_POINT = Buffer.from(
 const bitLengthCompressedPoint = 264;
 const bitLengthUncompressedPoint = 520;
 
-const extractX = (point: Buffer) =>
-  BigInt(`0x${point.slice(1, 1 + 256 / 8).toString("hex")}`);
-
-const extractY = (point: Buffer) =>
-  BigInt(`0x${point.slice(1 + 256 / 8).toString("hex")}`);
+const extractX = (point: Buffer) => bufferToBigInt(point, 1, 1 + 256 / 8);
+const extractY = (point: Buffer) => bufferToBigInt(point, 1 + 256 / 8);
 
 const extractCoordinates = (point: Buffer) => {
   return {

@@ -1,4 +1,4 @@
-import { hash160 } from ".";
+import { hash160, bufferToBigInt } from ".";
 
 describe("Utils", () => {
   describe("hash160", () => {
@@ -10,6 +10,19 @@ describe("Utils", () => {
       expect(hash160(pubKey).toString("hex")).toBe(
         "9cbbf17cc7ba64c3cd56b9dddac33d7e6c86ab93"
       );
+    });
+  });
+
+  describe("bufferToBigInt", () => {
+    it("should convert the buffer to a bigint with the value 16", () => {
+      const buffer = Buffer.from("10", "hex");
+      expect(bufferToBigInt(buffer)).toBe(16n);
+    });
+
+    it("should convert only the middle 2 digits of the buffer to a bigint with the value of 16", () => {
+      const buffer = Buffer.from("10001010", "hex");
+      // 1 byte per 2 hex chars, so the chars "0010" should be converted
+      expect(bufferToBigInt(buffer, 1, 3)).toBe(16n);
     });
   });
 });
