@@ -211,4 +211,22 @@ describe("Secp256k1 Mathematics", () => {
       Buffer.from(pointProductExpected).toString("hex")
     );
   });
+
+  it("should return the product of a compressed point and a Buffer representing the number 5 as a compressed point", () => {
+    const pointProductActual = pointMultiply(
+      pointOneCompressed,
+      Buffer.from("101", "binary"),
+      {
+        compressed: true,
+      }
+    );
+    const pointProductExpected = pointMultiplyWithScalarTinySecp256k1(
+      pointOneCompressed,
+      5,
+      true
+    )!;
+    expect(pointProductActual.toString("hex")).toBe(
+      Buffer.from(pointProductExpected).toString("hex")
+    );
+  });
 });

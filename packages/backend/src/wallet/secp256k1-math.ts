@@ -1,5 +1,5 @@
 import { modInv, modPow } from "bigint-mod-arith";
-
+import { Bit } from "../types";
 /**
  * A lot of the math and numbers here come from https://learnmeabitcoin.com/technical/ecdsa & https://learnmeabitcoin.com/technical/public-key
  * These functions exist in other libraries (e.g. tiny-secp256k1),
@@ -154,20 +154,27 @@ export const pointAdd = (
 
 export const pointMultiply = (
   point: Buffer,
-  scalar: bigint,
+  multiplier: number | bigint | Buffer,
   { compressed } = { compressed: false }
-) =>
-  scalar
-    .toString(2) // For scalar === 149 => '10010101'
+) => {
+  let multiplierAsBinaryString: string;
+  if (multiplier instanceof Buffer) {
+    multiplierAsBinaryString = multiplier.toString("binary");
+  } else {
+    // For scalar === 149 => '10010101'
+    multiplierAsBinaryString = multiplier.toString(2);
+  }
+  const bits = multiplierAsBinaryString
     .slice(1) // '10010101' => '0010101'
-    .split("") // '0010101' => ['0', '0', '1', '0', '1', '0', '1']
-    .reduce((accPoint, bit, index, bitArray) => {
-      const isLastBit = index === bitArray.length - 1;
-      // Can use uncompressed points for small perf boost in intermediate calculations
-      const compressPoint = isLastBit ? { compressed } : { compressed: false };
-      const pointDoubled = pointDouble(accPoint, compressPoint);
-      if (bit === "1") {
-        return pointAdd(pointDoubled, point, compressPoint);
-      }
-      return pointDoubled;
-    }, point);
+    .split("") as Bit[]; // '0010101' => ['0', '0', '1', '0', '1', '0', '1']
+  return bits.reduce((accPoint, bit, index, bitArray) => {
+    const isLastBit = index === bitArray.length - 1;
+    // Can use uncompressed points for small perf boost in intermediate calculations
+    const compressPoint = isLastBit ? { compressed } : { compressed: false };
+    const pointDoubled = pointDouble(accPoint, compressPoint);
+    if (bit === "1") {
+      return pointAdd(pointDoubled, point, compressPoint);
+    }
+    return pointDoubled;
+  }, point);
+};
