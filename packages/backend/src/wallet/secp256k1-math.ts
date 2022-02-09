@@ -26,6 +26,9 @@ export const GENERATOR_POINT = Buffer.from(
   "hex"
 );
 
+const bitLengthCompressedPoint = 264;
+const bitLengthUncompressedPoint = 520;
+
 const extractX = (point: Buffer) =>
   BigInt(`0x${point.slice(1, 1 + 256 / 8).toString("hex")}`);
 
@@ -53,25 +56,25 @@ const modulo = (number: bigint, modulus = PRIME_MODULUS) => {
 const pointIsCompressed = (point: Buffer) => {
   const prefix = point.slice(0, 1).toString("hex");
   if (prefix === "02" || prefix === "03") {
-    if (point.length === 264 / 8) {
+    if (point.length === bitLengthCompressedPoint / 8) {
       return true;
     }
     throw new Error(
       `Point ${point.toString(
         "hex"
-      )} has the correct prefix (${prefix}) but does not have a length of 264 bits (${
+      )} has the correct prefix (${prefix}) but does not have a length of ${bitLengthCompressedPoint} bits (${
         point.length * 8
       } bits)`
     );
   }
   if (prefix === "04") {
-    if (point.length === 520 / 8) {
+    if (point.length === bitLengthUncompressedPoint / 8) {
       return false;
     }
     throw new Error(
       `Point ${point.toString(
         "hex"
-      )} has the correct prefix (${prefix}) but does not have a length of 520 bits (${
+      )} has the correct prefix (${prefix}) but does not have a length of ${bitLengthUncompressedPoint} bits (${
         point.length * 8
       })`
     );
@@ -83,24 +86,24 @@ const pointIsCompressed = (point: Buffer) => {
 
 // See https://learnmeabitcoin.com/technical/public-key#how-to-decompress-a-public-key
 const uncompressPoint = (point: Buffer) => {
-  if (pointIsCompressed(point)) {
-    const prefix = point.slice(0, 1).toString("hex");
-    const x = extractX(point);
-    const ySquared = modulo(x ** 3n + 7n);
-    let y = modPow(ySquared, (PRIME_MODULUS + 1n) / 4n, PRIME_MODULUS);
-    if (prefix === "02" && modulo(y, 2n) !== 0n) {
-      y = modulo(PRIME_MODULUS - y);
-    }
-    if (prefix === "03" && modulo(y, 2n) === 0n) {
-      y = modulo(PRIME_MODULUS - y);
-    }
-    return Buffer.concat([
-      Buffer.from("04", "hex"),
-      Buffer.from(bigIntTo32ByteHex(x), "hex"),
-      Buffer.from(bigIntTo32ByteHex(y), "hex"),
-    ]);
+  if (!pointIsCompressed(point)) {
+    return point;
   }
-  return point;
+  const prefix = point.slice(0, 1).toString("hex");
+  const x = extractX(point);
+  const ySquared = modulo(x ** 3n + 7n);
+  let y = modPow(ySquared, (PRIME_MODULUS + 1n) / 4n, PRIME_MODULUS);
+  if (prefix === "02" && modulo(y, 2n) !== 0n) {
+    y = modulo(PRIME_MODULUS - y);
+  }
+  if (prefix === "03" && modulo(y, 2n) === 0n) {
+    y = modulo(PRIME_MODULUS - y);
+  }
+  return Buffer.concat([
+    Buffer.from("04", "hex"),
+    Buffer.from(bigIntTo32ByteHex(x), "hex"),
+    Buffer.from(bigIntTo32ByteHex(y), "hex"),
+  ]);
 };
 
 const pointAsBuffer = (pointX: bigint, pointY: bigint, compressed: boolean) => {
@@ -148,3 +151,23 @@ export const pointAdd = (
   const sumPointY = modulo(slope * (pointOneX - sumPointX) - pointOneY);
   return pointAsBuffer(sumPointX, sumPointY, compressed);
 };
+
+export const pointMultiply = (
+  point: Buffer,
+  scalar: bigint,
+  { compressed } = { compressed: false }
+) =>
+  scalar
+    .toString(2) // For scalar === 149 => '10010101'
+    .slice(1) // '10010101' => '0010101'
+    .split("") // '0010101' => ['0', '0', '1', '0', '1', '0', '1']
+    .reduce((accPoint, bit, index, bitArray) => {
+      const isLastBit = index === bitArray.length - 1;
+      // Can use uncompressed points for small perf boost in intermediate calculations
+      const compressPoint = isLastBit ? { compressed } : { compressed: false };
+      const pointDoubled = pointDouble(accPoint, compressPoint);
+      if (bit === "1") {
+        return pointAdd(pointDoubled, point, compressPoint);
+      }
+      return pointDoubled;
+    }, point);

@@ -12,6 +12,9 @@ export const legacyAccountBTC = {
 export const segWitAccountBTC = {
   extendedKey:
     "zpub6rhiffzBcHgg2pcxDqGABAG92kvZMNPT32wrKLg97FWzHcwussvBaUqY8agEWiQT2QH1uoCbHz51cZVJJTnmnkdhtc7RnFgsYwiVaGtCUS8",
+  publicKeys: [
+    "02d02f92658c13da93fd9660a087428523d16756533f1221a5c081b9e80094f3f9",
+  ],
   addresses: ["bc1qmw8ahz6a68j4cvgmlt3v00js0mw2pvpg44czur"],
 };
 

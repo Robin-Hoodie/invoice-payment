@@ -10,3 +10,6 @@ overrides:
   - files: "./packages/backend/jest-resolver.js"
     rules:
       "@typescript-eslint/no-var-requires": "off"
+  - files: "*.spec.ts"
+    rules:
+      "@typescript-eslint/no-non-null-assertion": "off"

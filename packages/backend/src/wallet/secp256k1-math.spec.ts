@@ -1,19 +1,21 @@
 import { pointAdd as pointAddTinySecp256k1 } from "tiny-secp256k1";
-import { pointDouble, pointAdd } from "./secp256k1-math";
+import { pointDouble, pointAdd, pointMultiply } from "./secp256k1-math";
 
 /**
  *  We're using the tiny-secp256k1 library to test against our expectations
  **/
 
-// Taken some points from https://asecuritysite.com/ecc/ecc_points2 w/ type secp256k1 & starting point 200
+// 8 * G
 const pointOneUncompressed = Buffer.from(
   "042f01e5e15cca351daff3843fb70f3c2f0a1bdd05e5af888a67784ef3e10a2a015c4da8a741539949293d082a132d13b4c2e213d6ba5b7617b5da2cb76cbde904",
   "hex"
 );
 const pointOneCompressed = Buffer.from(
-  "022f01e5e15cca351daff3843fb70f3c2f0a1bdd05e5af888a67784ef3e10a2a01",
+  "022f01e5e15cca351daff3843fb70f3c2f0a1bdd05e5af888a67784ef3e10a2a015",
   "hex"
 );
+
+// 2 * G
 const pointTwoUnCompressed = Buffer.from(
   "04c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee51ae168fea63dc339a3c58419466ceaeef7f632653266d0e1236431a950cfe52a",
   "hex"
@@ -22,6 +24,20 @@ const pointTwoCompressed = Buffer.from(
   "02c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
   "hex"
 );
+
+const pointMultiplyWithScalarTinySecp256k1 = (
+  point: Buffer,
+  scalar: number,
+  compressed: boolean
+) =>
+  Array(scalar)
+    .fill(null)
+    .filter((_, i) => i !== 0)
+    .reduce(
+      (multipliedPoint) =>
+        pointAddTinySecp256k1(multipliedPoint, point, compressed),
+      point
+    );
 
 describe("Secp256k1 Mathematics", () => {
   it("should return the result of doubling an uncompressed point as an uncompressed point", () => {
@@ -32,9 +48,9 @@ describe("Secp256k1 Mathematics", () => {
       pointOneUncompressed,
       pointOneUncompressed,
       false
-    );
+    )!;
     expect(pointDoubledActual.toString("hex")).toBe(
-      pointDoubledExpected.toString("hex")
+      Buffer.from(pointDoubledExpected).toString("hex")
     );
   });
 
@@ -46,9 +62,9 @@ describe("Secp256k1 Mathematics", () => {
       pointOneUncompressed,
       pointOneUncompressed,
       true
-    );
+    )!;
     expect(pointDoubledActual.toString("hex")).toBe(
-      pointDoubledExpected.toString("hex")
+      Buffer.from(pointDoubledExpected).toString("hex")
     );
   });
 
@@ -56,13 +72,13 @@ describe("Secp256k1 Mathematics", () => {
     const pointDoubledActual = pointDouble(pointOneCompressed, {
       compressed: false,
     });
-    const pointDoubledExpect = pointAddTinySecp256k1(
+    const pointDoubledExpected = pointAddTinySecp256k1(
       pointOneCompressed,
       pointOneCompressed,
       false
-    );
+    )!;
     expect(pointDoubledActual.toString("hex")).toBe(
-      pointDoubledExpect.toString("hex")
+      Buffer.from(pointDoubledExpected).toString("hex")
     );
   });
 
@@ -70,13 +86,13 @@ describe("Secp256k1 Mathematics", () => {
     const pointDoubledActual = pointDouble(pointOneCompressed, {
       compressed: true,
     });
-    const pointDoubledExpect = pointAddTinySecp256k1(
+    const pointDoubledExpected = pointAddTinySecp256k1(
       pointOneCompressed,
       pointOneCompressed,
       true
-    );
+    )!;
     expect(pointDoubledActual.toString("hex")).toBe(
-      pointDoubledExpect.toString("hex")
+      Buffer.from(pointDoubledExpected).toString("hex")
     );
   });
 
@@ -90,9 +106,9 @@ describe("Secp256k1 Mathematics", () => {
       pointOneUncompressed,
       pointTwoUnCompressed,
       false
-    );
+    )!;
     expect(pointSumActual.toString("hex")).toBe(
-      pointSumExpected.toString("hex")
+      Buffer.from(pointSumExpected).toString("hex")
     );
   });
 
@@ -106,9 +122,9 @@ describe("Secp256k1 Mathematics", () => {
       pointOneUncompressed,
       pointTwoUnCompressed,
       true
-    );
+    )!;
     expect(pointSumActual.toString("hex")).toBe(
-      pointSumExpected.toString("hex")
+      Buffer.from(pointSumExpected).toString("hex")
     );
   });
 
@@ -120,9 +136,9 @@ describe("Secp256k1 Mathematics", () => {
       pointOneCompressed,
       pointTwoCompressed,
       false
-    );
+    )!;
     expect(pointSumActual.toString("hex")).toBe(
-      pointSumExpected.toString("hex")
+      Buffer.from(pointSumExpected).toString("hex")
     );
   });
 
@@ -134,9 +150,65 @@ describe("Secp256k1 Mathematics", () => {
       pointOneCompressed,
       pointTwoCompressed,
       true
-    );
+    )!;
     expect(pointSumActual.toString("hex")).toBe(
-      pointSumExpected.toString("hex")
+      Buffer.from(pointSumExpected).toString("hex")
+    );
+  });
+
+  it("should return the product of an uncompressed point and 5 as an uncompressed point", () => {
+    const pointProductActual = pointMultiply(pointOneUncompressed, 5n, {
+      compressed: false,
+    });
+    const pointProductExpected = pointMultiplyWithScalarTinySecp256k1(
+      pointOneUncompressed,
+      5,
+      false
+    )!;
+    expect(pointProductActual.toString("hex")).toBe(
+      Buffer.from(pointProductExpected).toString("hex")
+    );
+  });
+
+  it("should return the product of a compressed point and 5 as an uncompressed point", () => {
+    const pointProductActual = pointMultiply(pointOneCompressed, 5n, {
+      compressed: false,
+    });
+    const pointProductExpected = pointMultiplyWithScalarTinySecp256k1(
+      pointOneCompressed,
+      5,
+      false
+    )!;
+    expect(pointProductActual.toString("hex")).toBe(
+      Buffer.from(pointProductExpected).toString("hex")
+    );
+  });
+
+  it("should return the product of an uncompressed point and 5 as a compressed point", () => {
+    const pointProductActual = pointMultiply(pointOneUncompressed, 5n, {
+      compressed: true,
+    });
+    const pointProductExpected = pointMultiplyWithScalarTinySecp256k1(
+      pointOneUncompressed,
+      5,
+      true
+    )!;
+    expect(pointProductActual.toString("hex")).toBe(
+      Buffer.from(pointProductExpected).toString("hex")
+    );
+  });
+
+  it("should return the product of a compressed point and 5 as a compressed point", () => {
+    const pointProductActual = pointMultiply(pointOneCompressed, 5n, {
+      compressed: true,
+    });
+    const pointProductExpected = pointMultiplyWithScalarTinySecp256k1(
+      pointOneCompressed,
+      5,
+      true
+    )!;
+    expect(pointProductActual.toString("hex")).toBe(
+      Buffer.from(pointProductExpected).toString("hex")
     );
   });
 });
