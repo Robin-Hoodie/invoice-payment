@@ -5,6 +5,7 @@
   "private": true,
   "scripts": {
     "all:format": "prettier --ignore-unknown --write .",
+    "all:format:check": "prettier --ignore-unknown --check .",
     "backend:dev": "yarn workspace @oreon/invoice-payment-backend dev",
     "backend:lint": "yarn workspace @oreon/invoice-payment-backend lint",
     "backend:test": "yarn workspace @oreon/invoice-payment-backend test",
