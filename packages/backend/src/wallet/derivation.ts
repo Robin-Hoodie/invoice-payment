@@ -25,19 +25,19 @@ const generatePubKeyAndChainCode = (
   const digest = hmac.digest();
 
   // Split HMAC-SHA512 output
-  const hmacDigestFirstHalf = digest.slice(0, 32);
+  const digestFirstHalf = digest.slice(0, 32);
   const childChainCode = Buffer.from(digest.slice(32));
 
-  if (bufferToBigInt(hmacDigestFirstHalf) > ORDER) {
+  if (bufferToBigInt(digestFirstHalf) > ORDER) {
     throw new Error(
-      "First half of HMAC digest greater than the order of the curve. Try the next index"
+      "First half of HMAC digest is greater than the order of the curve. Try the next index"
     );
   }
 
   // Calculate pub key
   const childPubKeyIntermediate = pointMultiply(
     GENERATOR_POINT,
-    hmacDigestFirstHalf
+    digestFirstHalf
   );
 
   if (!childPubKeyIntermediate) {

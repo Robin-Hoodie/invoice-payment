@@ -6,10 +6,10 @@
   "scripts": {
     "all:format": "prettier --ignore-unknown --write .",
     "all:format:check": "prettier --ignore-unknown --check .",
+    "all:lint": "yarn workspaces foreach -p run lint",
+    "all:test": "yarn workspaces foreach -p run test",
+    "all:typecheck": "yarn workspaces foreach -p run typecheck",
     "backend:dev": "yarn workspace @oreon/invoice-payment-backend dev",
-    "backend:lint": "yarn workspace @oreon/invoice-payment-backend lint",
-    "backend:test": "yarn workspace @oreon/invoice-payment-backend test",
-    "backend:typecheck": "yarn workspace @oreon/invoice-payment-backend typecheck",
     "postinstall": "husky install"
   },
   "workspaces": [

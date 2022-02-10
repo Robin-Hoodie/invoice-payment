@@ -1,4 +1,4 @@
-name: CI
+name: Code Quality - Check formatting, linting,
 on:
   workflow_dispatch:
   push:
@@ -18,5 +18,6 @@ jobs:
           node-version: "16"
           cache: "yarn"
       - run: "yarn all:format:check"
-      - run: "yarn backend:lint"
-      - run: "yarn backend:test"
+      - run: "yarn all:lint"
+      - run: "yarn all:typecheck"
+      - run: "yarn all:test"
