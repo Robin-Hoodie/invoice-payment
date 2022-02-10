@@ -29,15 +29,11 @@ export const isXPrivDecoded = (
 
 export const isXPubDecoded = (
   extendedKey: ExtendedKeyDecoded
-): extendedKey is XPubDecoded => {
-  return extendedKey.version === "0488b21e";
-};
+): extendedKey is XPubDecoded => extendedKey.version === "0488b21e";
 
 export const isZPubDecoded = (
   extendedKey: ExtendedKeyDecoded
-): extendedKey is ZPubDecoded => {
-  return extendedKey.version === "04b24746";
-};
+): extendedKey is ZPubDecoded => extendedKey.version === "04b24746";
 
 export const decodeExtendedKey = (extendedKey: string): ExtendedKeyDecoded => {
   const extendedKeyDecoded = decode(extendedKey);

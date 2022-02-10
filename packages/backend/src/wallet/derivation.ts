@@ -1,9 +1,10 @@
 import { createHmac } from "crypto";
 import { pointMultiply, pointAdd } from "tiny-secp256k1";
-import { GENERATOR_POINT } from "./secp256k1-constants";
+import { GENERATOR_POINT } from "./secp256k1-math";
 import { decodeExtendedKey } from "./extended-key";
 import { pubKeyToLegacyAddress } from "./address";
-import { isXPubDecoded } from ".";
+import { isXPubDecoded, isZPubDecoded, ORDER, pubKeyToSegwitAddress } from ".";
+import { bufferToBigInt } from "../utils";
 
 const maxIndexNormalChildKeys = 2 ** 31;
 
@@ -15,8 +16,8 @@ const getIndexAsBuffer = (index: number) => {
 
 const generatePubKeyAndChainCode = (
   pubKey: Uint8Array,
-  chainCode: Uint8Array,
-  index: Uint8Array
+  chainCode: Buffer,
+  index: Buffer
 ) => {
   // Churn inputs throught HMAC-SHA512
   const hmac = createHmac("sha512", chainCode);
@@ -24,26 +25,28 @@ const generatePubKeyAndChainCode = (
   const digest = hmac.digest();
 
   // Split HMAC-SHA512 output
-  const hmacOutputFirstHalf: Uint8Array = digest.slice(0, 32);
+  const hmacDigestFirstHalf = digest.slice(0, 32);
   const childChainCode = Buffer.from(digest.slice(32));
 
+  if (bufferToBigInt(hmacDigestFirstHalf) > ORDER) {
+    throw new Error(
+      "First half of HMAC digest greater than the order of the curve. Try the next index"
+    );
+  }
+
   // Calculate pub key
-  const hmacOutputFirstHalfTimesGeneratorPoint = pointMultiply(
+  const childPubKeyIntermediate = pointMultiply(
     GENERATOR_POINT,
-    hmacOutputFirstHalf
+    hmacDigestFirstHalf
   );
 
-  if (!hmacOutputFirstHalfTimesGeneratorPoint) {
+  if (!childPubKeyIntermediate) {
     throw new Error(
       "Child public key point is at point of infinity after multiplication with generator point. Try the next index"
     );
   }
 
-  const childPubKey = pointAdd(
-    hmacOutputFirstHalfTimesGeneratorPoint,
-    pubKey,
-    true
-  );
+  const childPubKey = pointAdd(childPubKeyIntermediate, pubKey, true);
 
   if (!childPubKey) {
     throw new Error(
@@ -69,7 +72,10 @@ export const generateAddressFromExtendedPubKey = (
 
   const decodedExtendedKey = decodeExtendedKey(extendedKey);
 
-  if (isXPubDecoded(decodedExtendedKey)) {
+  const isXPubKey = isXPubDecoded(decodedExtendedKey);
+  const isZPubKey = isZPubDecoded(decodedExtendedKey);
+
+  if (isXPubKey || isZPubKey) {
     const { pubKey: pubKeyIntermediate, chainCode } =
       generatePubKeyAndChainCode(
         decodedExtendedKey.key,
@@ -85,10 +91,13 @@ export const generateAddressFromExtendedPubKey = (
       indexAsBuffer
     );
 
-    return pubKeyToLegacyAddress(pubKey);
+    if (isXPubKey) {
+      return pubKeyToLegacyAddress(pubKey);
+    }
+    return pubKeyToSegwitAddress(pubKey);
   }
 
   throw new Error(
-    "Generation of addresses is only possible based on XPubs for now"
+    "Generation of addresses is only possible based on XPubs & ZPubs"
   );
 };
