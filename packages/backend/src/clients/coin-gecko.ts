@@ -20,14 +20,14 @@ export const getSupportedCoins = async () =>
   );
 
 export const getPricesForCoinsInCurrencies = async (
-  coin: string[],
+  coins: string[],
   currencies: CurrencyFiat[]
 ) =>
   await httpClient.get<CoinToCurrencyToPrice, CoinToCurrencyToPrice>(
     COIN_GECKO_URLS.PRICE,
     {
       params: {
-        ids: coin.join(","),
+        ids: coins.join(","),
         vs_currencies: currencies.join(","),
       },
       cache: false,
