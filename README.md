@@ -1,6 +1,6 @@
 # io.oreon.invoice-payment
 
-![CI](https://github.com/Robin-Hoodie/invoice-payment/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/Robin-Hoodie/invoice-payment/actions/workflows/code-quality.yml/badge.svg)
 
 Small web application in which we display generated (SegWit) addresses that can be used to complete payment for a particular invoice.
 
