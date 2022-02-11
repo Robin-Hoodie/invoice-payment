@@ -14,8 +14,10 @@
     "bech32": "^2.0.0",
     "bigint-mod-arith": "^3.0.2",
     "bs58check": "^2.1.2",
+    "date-fns": "^2.28.0",
     "enhanced-resolve": "^5.9.0",
     "express": "^4.17.2",
+    "jspdf": "^2.5.1",
     "tiny-secp256k1": "^2.2.0"
   },
   "devDependencies": {
