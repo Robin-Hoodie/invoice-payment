@@ -14,6 +14,19 @@ const getIndexAsBuffer = (index: number) => {
   return buffer;
 };
 
+const isPrivateKeyValid = (privateKey: Buffer) =>
+  bufferToBigInt(privateKey) < ORDER;
+const privateKeyToPoint = (privateKey: Buffer) => {
+  if (!isPrivateKeyValid(privateKey)) {
+    throw new Error(
+      "Private key is greater than the order of the curve. Try the next index"
+    );
+  }
+  // result of multiplication can't be negative, as we checked that the digest is smaller than the order of the curve
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  return pointMultiply(GENERATOR_POINT, privateKey)!;
+};
+
 const generatePubKeyAndChainCode = (
   pubKey: Uint8Array,
   chainCode: Buffer,
@@ -28,25 +41,11 @@ const generatePubKeyAndChainCode = (
   const digestFirstHalf = digest.slice(0, 32);
   const childChainCode = Buffer.from(digest.slice(32));
 
-  if (bufferToBigInt(digestFirstHalf) > ORDER) {
-    throw new Error(
-      "First half of HMAC digest is greater than the order of the curve. Try the next index"
-    );
-  }
-
-  // Calculate pub key
-  const childPubKeyIntermediate = pointMultiply(
-    GENERATOR_POINT,
-    digestFirstHalf
+  const childPubKey = pointAdd(
+    privateKeyToPoint(digestFirstHalf),
+    pubKey,
+    true
   );
-
-  if (!childPubKeyIntermediate) {
-    throw new Error(
-      "Child public key point is at point of infinity after multiplication with generator point. Try the next index"
-    );
-  }
-
-  const childPubKey = pointAdd(childPubKeyIntermediate, pubKey, true);
 
   if (!childPubKey) {
     throw new Error(
@@ -80,7 +79,8 @@ export const generateAddressFromExtendedPubKey = (
       generatePubKeyAndChainCode(
         decodedExtendedKey.key,
         decodedExtendedKey.chainCode,
-        getIndexAsBuffer(0) // Generate receival address based on BIP-44
+        // Generate receival (external) address based on https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#change
+        getIndexAsBuffer(0)
       );
 
     const indexAsBuffer = getIndexAsBuffer(index);

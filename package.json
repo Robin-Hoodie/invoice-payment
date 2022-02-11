@@ -9,6 +9,7 @@
     "all:lint": "yarn workspaces foreach -p run lint",
     "all:test": "yarn workspaces foreach -p run test",
     "all:typecheck": "yarn workspaces foreach -p run typecheck",
+    "backend:test": "yarn workspace @oreon/invoice-payment-backend test",
     "backend:dev": "yarn workspace @oreon/invoice-payment-backend dev",
     "postinstall": "husky install"
   },
