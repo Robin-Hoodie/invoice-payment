@@ -5,4 +5,9 @@ const resolver = enhancedResolve.create.sync({
   extensions: [".js", ".json", ".node", ".ts"],
 });
 
-module.exports = (request, options) => resolver(options.basedir, request);
+module.exports = (request, options) => {
+  if (request === "uint8array-tools" || request === "tiny-secp256k1") {
+    return resolver(options.basedir, request);
+  }
+  return options.defaultResolver(request, options);
+};
