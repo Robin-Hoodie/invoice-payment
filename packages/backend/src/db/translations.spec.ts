@@ -2,22 +2,22 @@ import { Collection } from "mongodb";
 import {
   collectionNameTranslations,
   DBTranslations,
-  DocumentTranslations,
+  DocumentTranslation,
 } from "./translations";
 import { connectionClose, connectionSetup, getCollection } from "./utils-db";
 
 describe("Translations", () => {
-  let collection: Collection<DocumentTranslations>;
+  let collectionTranslations: Collection<DocumentTranslation>;
 
   beforeAll(async () => {
     await connectionSetup();
-    collection = getCollection<DocumentTranslations>(
+    collectionTranslations = getCollection<DocumentTranslation>(
       collectionNameTranslations
     );
   });
 
   beforeEach(async () => {
-    await collection.deleteMany({});
+    await collectionTranslations.deleteMany({});
   });
 
   afterAll(async () => {
@@ -26,7 +26,7 @@ describe("Translations", () => {
 
   it("should retrieve all translations for a namespace", async () => {
     const dbTranslations = new DBTranslations("en");
-    await collection.insertOne({
+    await collectionTranslations.insertOne({
       namespace: "namespace",
       values: {
         foo: {
@@ -49,7 +49,7 @@ describe("Translations", () => {
 
   it("should throw if attempting to retrieve a translation in a non-existing namespace", async () => {
     const dbTranslations = new DBTranslations("en");
-    await collection.insertOne({
+    await collectionTranslations.insertOne({
       namespace: "namespace",
       values: {
         foo: {
@@ -65,7 +65,7 @@ describe("Translations", () => {
 
   it("should retrieve a translation in English by passing the namespace and key separately", async () => {
     const dbTranslations = new DBTranslations("en");
-    await collection.insertOne({
+    await collectionTranslations.insertOne({
       namespace: "namespace",
       values: {
         foo: {
@@ -81,7 +81,7 @@ describe("Translations", () => {
 
   it("should retrieve a translation in English by passing the namespace and key as one string", async () => {
     const dbTranslations = new DBTranslations("en");
-    await collection.insertOne({
+    await collectionTranslations.insertOne({
       namespace: "namespace",
       values: {
         foo: {
@@ -95,7 +95,7 @@ describe("Translations", () => {
 
   it("should throw if attempting to retrieve a translation for a non existing key", async () => {
     const dbTranslations = new DBTranslations("en");
-    await collection.insertOne({
+    await collectionTranslations.insertOne({
       namespace: "namespace",
       values: {
         foo: {

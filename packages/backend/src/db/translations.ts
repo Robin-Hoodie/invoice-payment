@@ -1,7 +1,7 @@
 import { Language } from "../types";
 import { getCollection } from "./utils-db";
 
-export interface DocumentTranslations {
+export interface DocumentTranslation {
   namespace: string;
   values: Record<string, Record<Language, string>>;
 }
@@ -16,7 +16,7 @@ export class DBTranslations {
   }
 
   get collection() {
-    return getCollection<DocumentTranslations>(collectionNameTranslations);
+    return getCollection<DocumentTranslation>(collectionNameTranslations);
   }
 
   async getTranslationsForNamespace(namespace: string) {
