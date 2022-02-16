@@ -24,7 +24,13 @@ export class DBTranslations {
       namespace,
     });
     if (translationsForNamespace) {
-      return translationsForNamespace.values;
+      return Object.entries(translationsForNamespace.values).reduce<
+        Record<string, string>
+      >((translationsForLanguage, [translationKey, translationsForKey]) => {
+        translationsForLanguage[translationKey] =
+          translationsForKey[this.#lang];
+        return translationsForLanguage;
+      }, {});
     }
     throw new Error(`The namespace "${namespace}" was not found!`);
   }
@@ -33,14 +39,14 @@ export class DBTranslations {
     const translationsForNamespace = await this.getTranslationsForNamespace(
       namespace
     );
-    if (translationsForNamespace) {
-      const translationsForKey = translationsForNamespace[key];
-      if (translationsForKey) {
-        return translationsForKey[this.#lang];
-      }
-      throw new Error(
-        `The key "${key}" was not found in the translations for namespace ${namespace}`
-      );
+    const translationForKey = translationsForNamespace[key] as
+      | string
+      | undefined;
+    if (translationForKey) {
+      return translationForKey;
     }
+    throw new Error(
+      `The key "${key}" was not found in the translations for namespace ${namespace}`
+    );
   }
 }

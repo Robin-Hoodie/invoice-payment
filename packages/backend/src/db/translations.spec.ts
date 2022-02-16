@@ -42,14 +42,8 @@ describe("Translations", () => {
     expect(
       await dbTranslations.getTranslationsForNamespace("namespace")
     ).toEqual({
-      foo: {
-        en: "fooEn",
-        nl: "fooNl",
-      },
-      bar: {
-        en: "barEn",
-        nl: "barEn",
-      },
+      foo: "fooEn",
+      bar: "barEn",
     });
   });
 
