@@ -35,7 +35,7 @@ export class DBTranslations {
     throw new Error(`The namespace "${namespace}" was not found!`);
   }
 
-  async getTranslation(namespace: string, key: string) {
+  async getTranslationByNamespaceAndKey(namespace: string, key: string) {
     const translationsForNamespace = await this.getTranslationsForNamespace(
       namespace
     );
@@ -48,5 +48,10 @@ export class DBTranslations {
     throw new Error(
       `The key "${key}" was not found in the translations for namespace ${namespace}`
     );
+  }
+
+  async getTranslation(namespaceWithKey: string) {
+    const [namespace, key] = namespaceWithKey.split("/");
+    return this.getTranslationByNamespaceAndKey(namespace, key);
   }
 }

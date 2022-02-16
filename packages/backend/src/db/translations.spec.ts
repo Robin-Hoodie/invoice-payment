@@ -63,7 +63,7 @@ describe("Translations", () => {
     ).rejects.toThrow('namespace "namespace-does-not-exist"');
   });
 
-  it("should retrieve a translation in English", async () => {
+  it("should retrieve a translation in English by passing the namespace and key separately", async () => {
     const dbTranslations = new DBTranslations("en");
     await collection.insertOne({
       namespace: "namespace",
@@ -74,9 +74,23 @@ describe("Translations", () => {
         },
       },
     });
-    expect(await dbTranslations.getTranslation("namespace", "foo")).toBe(
-      "fooEn"
-    );
+    expect(
+      await dbTranslations.getTranslationByNamespaceAndKey("namespace", "foo")
+    ).toBe("fooEn");
+  });
+
+  it("should retrieve a translation in English by passing the namespace and key as one string", async () => {
+    const dbTranslations = new DBTranslations("en");
+    await collection.insertOne({
+      namespace: "namespace",
+      values: {
+        foo: {
+          en: "fooEn",
+          nl: "fooNl",
+        },
+      },
+    });
+    expect(await dbTranslations.getTranslation("namespace/foo")).toBe("fooEn");
   });
 
   it("should throw if attempting to retrieve a translation for a non existing key", async () => {
@@ -91,7 +105,7 @@ describe("Translations", () => {
       },
     });
     await expect(
-      dbTranslations.getTranslation("namespace", "key-does-not-exist")
+      dbTranslations.getTranslation("namespace/key-does-not-exist")
     ).rejects.toThrow('key "key-does-not-exist"');
   });
 });
