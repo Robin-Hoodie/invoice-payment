@@ -19,12 +19,22 @@ export class DBTranslations {
     return getCollection<DocumentTranslations>(collectionNameTranslations);
   }
 
-  async getTranslation(namespace: string, key: string) {
+  async getTranslationsForNamespace(namespace: string) {
     const translationsForNamespace = await this.collection.findOne({
       namespace,
     });
     if (translationsForNamespace) {
-      const translationsForKey = translationsForNamespace.values[key];
+      return translationsForNamespace.values;
+    }
+    throw new Error(`The namespace "${namespace}" was not found!`);
+  }
+
+  async getTranslation(namespace: string, key: string) {
+    const translationsForNamespace = await this.getTranslationsForNamespace(
+      namespace
+    );
+    if (translationsForNamespace) {
+      const translationsForKey = translationsForNamespace[key];
       if (translationsForKey) {
         return translationsForKey[this.#lang];
       }
@@ -32,6 +42,5 @@ export class DBTranslations {
         `The key "${key}" was not found in the translations for namespace ${namespace}`
       );
     }
-    throw new Error(`The namespace "${namespace}" was not found!`);
   }
 }
