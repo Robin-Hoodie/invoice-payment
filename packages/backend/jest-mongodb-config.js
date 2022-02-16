@@ -1,7 +1,7 @@
 module.exports = {
   mongodbMemoryServerOptions: {
     instance: {
-      dbName: "invoice",
+      dbName: "invoiceDB",
     },
   },
 };

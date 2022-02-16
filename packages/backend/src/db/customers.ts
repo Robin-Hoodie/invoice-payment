@@ -1,17 +1,24 @@
-import { Language } from "../types";
+import { CurrencyFiat, Language, Address } from "../types";
+import { XOR } from "../types/utility-types";
 import { DBTranslations } from "./translations";
 import { getCollection } from "./utils-db";
+
+type ProjectGeneral = {
+  nameShort: string;
+  currency: CurrencyFiat;
+};
+
+type Project = XOR<
+  ProjectGeneral & { priceHourly: number },
+  ProjectGeneral & { cut: number }
+>;
 
 export interface DocumentCustomer {
   name: string;
   nameShort: string;
-  address: {
-    street: string;
-    postalCode: string;
-    city: string; // translation
-    country: string; // translation
-    vat: string;
-  };
+  vat: string;
+  address: Address;
+  projects: Project[];
 }
 
 export const collectionNameCustomers = "customers";
@@ -28,7 +35,9 @@ export class DBCustomers {
   }
 
   async getCustomer(nameShort: string) {
-    const customer = await this.collection.findOne(
+    const customer = await this.collection.findOne<
+      Omit<DocumentCustomer, "_id" | "nameShort">
+    >(
       { nameShort },
       {
         projection: {
@@ -42,8 +51,8 @@ export class DBCustomers {
         `The customer with short name "${nameShort}" was not found!`
       );
     }
-    const city = await this.#dbTranslations.getTranslation(
-      customer.address.city
+    const place = await this.#dbTranslations.getTranslation(
+      customer.address.place
     );
     const country = await this.#dbTranslations.getTranslation(
       customer.address.country
@@ -52,7 +61,7 @@ export class DBCustomers {
       ...customer,
       address: {
         ...customer.address,
-        city,
+        place,
         country,
       },
     };

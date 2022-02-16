@@ -1,4 +1,4 @@
-import { Collection, ObjectId } from "mongodb";
+import { Collection } from "mongodb";
 import {
   collectionNameCustomers,
   DBCustomers,
@@ -16,12 +16,8 @@ describe("Customers", () => {
 
   beforeAll(async () => {
     await connectionSetup();
-    collectionTranslations = getCollection<DocumentTranslation>(
-      collectionNameTranslations
-    );
-    collectionCustomers = getCollection<DocumentCustomer>(
-      collectionNameCustomers
-    );
+    collectionTranslations = getCollection(collectionNameTranslations);
+    collectionCustomers = getCollection(collectionNameCustomers);
   });
 
   beforeEach(async () => {
@@ -33,7 +29,7 @@ describe("Customers", () => {
     await connectionClose();
   });
 
-  it("should retrieve the customer info by id with the necessary values translated", async () => {
+  it("should retrieve the customer info by short name with the necessary values translated", async () => {
     const dbCustomers = new DBCustomers("en");
     await collectionTranslations.insertMany([
       {
@@ -58,23 +54,25 @@ describe("Customers", () => {
     await collectionCustomers.insertOne({
       name: "Google Belgium NV",
       nameShort: "google",
+      vat: "BE 0878.065.378",
       address: {
-        city: "place/brussels",
+        place: "place/brussels",
         country: "country/be",
         postalCode: "1040",
         street: "Amphitheatre Parkway 1600",
-        vat: "BE 0878.065.378",
       },
+      projects: [],
     });
     expect(await dbCustomers.getCustomer("google")).toEqual({
       name: "Google Belgium NV",
+      vat: "BE 0878.065.378",
       address: {
-        city: "Brussels",
+        place: "Brussels",
         country: "Belgium",
         postalCode: "1040",
         street: "Amphitheatre Parkway 1600",
-        vat: "BE 0878.065.378",
       },
+      projects: [],
     });
   });
 
@@ -83,13 +81,14 @@ describe("Customers", () => {
     await collectionCustomers.insertOne({
       name: "Google Belgium NV",
       nameShort: "google",
+      vat: "BE 0878.065.378",
       address: {
-        city: "place/brussels",
+        place: "place/brussels",
         country: "country/be",
         postalCode: "1040",
         street: "Amphitheatre Parkway 1600",
-        vat: "BE 0878.065.378",
       },
+      projects: [],
     });
     await expect(
       dbCustomers.getCustomer("short-name-does-not-exist")

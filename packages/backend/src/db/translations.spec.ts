@@ -11,9 +11,7 @@ describe("Translations", () => {
 
   beforeAll(async () => {
     await connectionSetup();
-    collectionTranslations = getCollection<DocumentTranslation>(
-      collectionNameTranslations
-    );
+    collectionTranslations = getCollection(collectionNameTranslations);
   });
 
   beforeEach(async () => {
