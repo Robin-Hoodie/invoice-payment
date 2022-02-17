@@ -1,5 +1,5 @@
-import { legacyAccountBTC, segWitAccountBTC } from "../../test/helpers";
-import { generateAddressFromExtendedPubKey } from "./derivation";
+import { legacyAccountBTC, segWitAccountBTC } from "@test/mock-keys-addresses";
+import { generateAddressFromExtendedPubKey } from "@/wallet/derivation";
 
 describe("Derivation", () => {
   it("should retrieve the correct legacy address for a given xpub", () => {

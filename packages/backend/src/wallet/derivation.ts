@@ -1,10 +1,14 @@
 import { createHmac } from "crypto";
 import { pointMultiply, pointAdd } from "tiny-secp256k1";
-import { GENERATOR_POINT } from "./secp256k1-math";
-import { decodeExtendedKey } from "./extended-key";
-import { pubKeyToLegacyAddress } from "./address";
-import { isXPubDecoded, isZPubDecoded, ORDER, pubKeyToSegwitAddress } from ".";
-import { bufferToBigInt } from "../utils";
+import { GENERATOR_POINT } from "@/wallet/secp256k1-math";
+import {
+  decodeExtendedKey,
+  isXPubDecoded,
+  isZPubDecoded,
+} from "@/wallet/extended-key";
+import { pubKeyToSegwitAddress, pubKeyToLegacyAddress } from "@/wallet/address";
+import { ORDER } from "@/wallet/secp256k1-math";
+import { bufferToBigInt } from "@/utils/utils-crypto";
 
 const maxIndexNormalChildKeys = 2 ** 31;
 

@@ -1,6 +1,6 @@
 import jsPDF from "jspdf";
-import { CurrencyFiat } from "../types";
-import { currencyToSymbol } from "../utils";
+import { CurrencyFiat } from "@/types";
+import { currencyToSymbol } from "@/utils/utils-currency";
 
 const round = (number: number, fractionDigits = 2) =>
   Number(number.toFixed(fractionDigits));
@@ -24,9 +24,8 @@ export const formatPriceForCurrency = (
 ) => {
   const currencySymbol = currencyToSymbol(currency);
   const fractionDigits = price.toFixed(2).slice(-2);
-  const priceFormattedWithoutFractionDigits = price
-    .toFixed(2)
-    .slice(0, -3)
+  const priceFormattedWithoutFractionDigits = Math.floor(price)
+    .toString()
     .split("")
     .reverse()
     .reduce((priceFormatted, digit, i) => {

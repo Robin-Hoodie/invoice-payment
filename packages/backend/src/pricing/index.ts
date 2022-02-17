@@ -1,9 +1,9 @@
-import { CurrencyFiat } from "../types";
+import { CurrencyFiat } from "@/types";
 import {
   getSupportedCurrencies,
   getSupportedCoins,
   getPricesForCoinsInCurrencies,
-} from "../clients/coin-gecko";
+} from "@/clients/coin-gecko";
 
 const isSupportedCurrency = (
   supportedCurrencies: string[],

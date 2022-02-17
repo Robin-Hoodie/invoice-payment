@@ -1,4 +1,4 @@
-import { hash160, bufferToBigInt } from "./crypto-utils";
+import { hash160, bufferToBigInt } from "@/utils/utils-crypto";
 
 describe("Crypto Utils", () => {
   it("should retrieve the correct hash for a given public key", () => {

@@ -1,7 +1,11 @@
 import { Collection } from "mongodb";
-import { collectionNameCustomers, getCustomer } from "./customers.db";
-import { DocumentCustomer } from "./types-customers";
-import { connectionClose, connectionSetup, getCollection } from "./connection";
+import { collectionNameCustomers, getCustomer } from "@/db/customers.db";
+import { DocumentCustomer } from "@/db/types-customers";
+import {
+  connectionClose,
+  connectionSetup,
+  getCollection,
+} from "@/db/connection";
 
 describe("Customers DB", () => {
   let collectionCustomers: Collection<DocumentCustomer>;

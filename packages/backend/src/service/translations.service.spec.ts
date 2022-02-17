@@ -1,10 +1,10 @@
-import { getTranslationsForNamespace } from "../db/translations.db";
+import { getTranslationsForNamespace } from "@/db/translations.db";
 import {
   getTranslation,
   getTranslationsForNamespaceAndLanguage,
-} from "./translations.service";
+} from "@/service/translations.service";
 
-jest.mock("../db/translations.db");
+jest.mock("@/db/translations.db");
 
 const mockedGetTranslationsForNamespace = jest.mocked(
   getTranslationsForNamespace

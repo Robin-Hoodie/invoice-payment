@@ -1,6 +1,6 @@
 import { modInv, modPow } from "bigint-mod-arith";
-import { Bit } from "../types";
-import { bufferToBigInt } from "../utils";
+import { Bit } from "@/types";
+import { bufferToBigInt } from "@/utils/utils-crypto";
 /**
  * A lot of the math and numbers here come from https://learnmeabitcoin.com/technical/ecdsa & https://learnmeabitcoin.com/technical/public-key
  * These functions exist in other libraries (e.g. tiny-secp256k1),

@@ -1,4 +1,4 @@
-import { CurrencyFiat, CurrencySymbol } from "../types";
+import { CurrencyFiat, CurrencySymbol } from "@/types";
 
 const currencyToSymbolMap: Record<CurrencyFiat, CurrencySymbol> = {
   eur: "€",

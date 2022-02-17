@@ -1,5 +1,5 @@
-import { DocumentTranslation, Translation } from "./types-translations";
-import { getCollection } from "./connection";
+import { DocumentTranslation, Translation } from "@/db/types-translations";
+import { getCollection } from "@/db/connection";
 
 export const collectionNameTranslations = "translations";
 

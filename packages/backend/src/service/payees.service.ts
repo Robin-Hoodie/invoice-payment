@@ -1,6 +1,6 @@
-import { getPayee as getPayeeFromDB } from "../db/payees.db";
-import { Language } from "../types";
-import { getTranslation } from "./translations.service";
+import { getPayee as getPayeeFromDB } from "@/db/payees.db";
+import { Language } from "@/types";
+import { getTranslation } from "@/service/translations.service";
 
 export const getPayee = async (nameShort: string, lang: Language) => {
   const payee = await getPayeeFromDB(nameShort);

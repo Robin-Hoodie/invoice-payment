@@ -1,5 +1,5 @@
-import { getCollection } from "./connection";
-import { DocumentPayee, Payee } from "./types-payees";
+import { getCollection } from "@/db/connection";
+import { DocumentPayee, Payee } from "@/db/types-payees";
 
 export const collectionNamePayees = "payees";
 

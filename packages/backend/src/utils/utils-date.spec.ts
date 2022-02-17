@@ -1,4 +1,4 @@
-import { formatDayMonthYear } from "./date-utils";
+import { formatDayMonthYear } from "@/utils/utils-date";
 
 describe("Date Utils", () => {
   it("should format the date as 30-01-2020", () => {

@@ -1,7 +1,11 @@
 import { Collection } from "mongodb";
-import { collectionNamePayees, getPayee } from "./payees.db";
-import { DocumentPayee } from "./types-payees";
-import { connectionClose, connectionSetup, getCollection } from "./connection";
+import { collectionNamePayees, getPayee } from "@/db/payees.db";
+import { DocumentPayee } from "@/db/types-payees";
+import {
+  connectionClose,
+  connectionSetup,
+  getCollection,
+} from "@/db/connection";
 
 describe("Payees DB", () => {
   let collectionPayees: Collection<DocumentPayee>;

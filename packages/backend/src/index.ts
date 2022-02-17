@@ -1,5 +1,5 @@
 import express from "express";
-import { getPriceForBitcoinInCurrencyFiat as getPriceBitcoinForCurrencyFiat } from "./pricing";
+import { getPriceForBitcoinInCurrencyFiat as getPriceBitcoinForCurrencyFiat } from "@/pricing";
 
 const app = express();
 const port = 3000;

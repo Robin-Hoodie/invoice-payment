@@ -1,5 +1,5 @@
-import { getCollection } from "./connection";
-import { DocumentCustomer, Customer } from "./types-customers";
+import { getCollection } from "@/db/connection";
+import { DocumentCustomer, Customer } from "@/db/types-customers";
 
 export const collectionNameCustomers = "customers";
 

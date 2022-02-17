@@ -1,6 +1,6 @@
-import { getCustomer as getCustomerFromDB } from "../db/customers.db";
-import { Language } from "../types";
-import { getTranslation } from "./translations.service";
+import { getCustomer as getCustomerFromDB } from "@/db/customers.db";
+import { Language } from "@/types";
+import { getTranslation } from "@/service/translations.service";
 
 export const getCustomer = async (nameShort: string, lang: Language) => {
   const customer = await getCustomerFromDB(nameShort);

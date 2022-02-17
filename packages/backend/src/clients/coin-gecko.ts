@@ -1,6 +1,6 @@
-import { httpClient } from "../http-client";
-import { CurrencyFiat } from "../types";
-import { SupportedCoin, CoinToCurrencyToPrice } from "./types";
+import { httpClient } from "@/http-client";
+import { CurrencyFiat } from "@/types";
+import { SupportedCoin, CoinToCurrencyToPrice } from "@/clients/types-clients";
 
 const COIN_GECKO_BASE_URL = "https://api.coingecko.com/api/v3";
 const COIN_GECKO_URLS = {

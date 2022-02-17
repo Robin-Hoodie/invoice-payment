@@ -1,7 +1,7 @@
 import {
   getOffsetsX,
   formatPriceForCurrency as formatPriceForCurrency,
-} from "./utils-pdf";
+} from "@/utils/utils-pdf";
 
 describe("Utils PDF", () => {
   it("should get the offsets on the X axis based on the doc width", () => {

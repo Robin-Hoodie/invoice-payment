@@ -1,5 +1,5 @@
-import { Language } from "../types";
-import { getTranslationsForNamespace } from "../db/translations.db";
+import { Language } from "@/types";
+import { getTranslationsForNamespace } from "@/db/translations.db";
 
 export const getTranslationsForNamespaceAndLanguage = async (
   namespace: string,

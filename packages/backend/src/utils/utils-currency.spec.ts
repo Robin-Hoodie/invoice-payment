@@ -1,4 +1,4 @@
-import { currencyToSymbol } from "./currency-utils";
+import { currencyToSymbol } from "@/utils/utils-currency";
 
 describe("Currency Utils", () => {
   it("should return '€' for the 'eur' currency", () => {

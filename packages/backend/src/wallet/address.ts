@@ -1,6 +1,6 @@
-import { hash160 } from "../utils";
-import { encode } from "bs58check";
 import { bech32 } from "bech32";
+import { encode } from "bs58check";
+import { hash160 } from "@/utils/utils-crypto";
 
 export const pubKeyToLegacyAddress = (pubKey: Uint8Array) => {
   const hash = hash160(pubKey);

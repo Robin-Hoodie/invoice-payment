@@ -1,4 +1,4 @@
-import { CurrencyFiat, Address } from "../types";
+import { CurrencyFiat, Address } from "@/types";
 
 interface ProjectGeneral {
   nameShort: string;

@@ -2,9 +2,13 @@ import { Collection } from "mongodb";
 import {
   collectionNameTranslations,
   getTranslationsForNamespace,
-} from "./translations.db";
-import { DocumentTranslation } from "./types-translations";
-import { connectionClose, connectionSetup, getCollection } from "./connection";
+} from "@/db/translations.db";
+import { DocumentTranslation } from "@/db/types-translations";
+import {
+  connectionClose,
+  connectionSetup,
+  getCollection,
+} from "@/db/connection";
 
 describe("Translations DB", () => {
   let collectionTranslations: Collection<DocumentTranslation>;

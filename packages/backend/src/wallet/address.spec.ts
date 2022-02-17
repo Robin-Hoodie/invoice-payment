@@ -1,6 +1,5 @@
-import { pubKeyToSegwitAddress } from ".";
-import { legacyAccountBTC, segWitAccountBTC } from "../../test/helpers";
-import { pubKeyToLegacyAddress } from "./address";
+import { pubKeyToSegwitAddress, pubKeyToLegacyAddress } from "@/wallet/address";
+import { legacyAccountBTC, segWitAccountBTC } from "@test/mock-keys-addresses";
 
 describe("Addressses", () => {
   describe("pubKeyToLegacyAddress", () => {

@@ -2,10 +2,10 @@ import {
   getSupportedCurrencies,
   getSupportedCoins,
   getPricesForCoinsInCurrencies,
-} from "../clients/coin-gecko";
-import { getPriceForBitcoinInCurrencyFiat } from "./index";
+} from "@/clients/coin-gecko";
+import { getPriceForBitcoinInCurrencyFiat } from "@/pricing";
 
-jest.mock("../clients/coin-gecko");
+jest.mock("@/clients/coin-gecko");
 const mockGetSupportedCurrencies = jest.mocked(getSupportedCurrencies);
 const mockGetSupportedCoins = jest.mocked(getSupportedCoins);
 const mockGetPricesForCoinsInCurrencies = jest.mocked(

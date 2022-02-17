@@ -10,6 +10,7 @@ overrides:
   - files:
       - "./packages/backend/jest-resolver.js"
       - "./packages/backend/mongodb/seed/*.js"
+      - "babel.config.js"
     rules:
       "@typescript-eslint/no-var-requires": "off"
   - files: "*.spec.ts"

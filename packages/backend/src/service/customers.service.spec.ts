@@ -1,9 +1,9 @@
-import { getCustomer as getCustomerFromDB } from "../db/customers.db";
-import { getTranslation } from "./translations.service";
-import { getCustomer } from "./customers.service";
+import { getCustomer as getCustomerFromDB } from "@/db/customers.db";
+import { getTranslation } from "@/service/translations.service";
+import { getCustomer } from "@/service/customers.service";
 
-jest.mock("./translations.service");
-jest.mock("../db/customers.db");
+jest.mock("@/service/translations.service");
+jest.mock("@/db/customers.db");
 
 const mockedGetTranslation = jest.mocked(getTranslation);
 const mockedGetCustomerFromDB = jest.mocked(getCustomerFromDB);

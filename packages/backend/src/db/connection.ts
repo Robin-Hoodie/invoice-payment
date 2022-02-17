@@ -1,5 +1,5 @@
 import { Document, MongoClient } from "mongodb";
-import { isOnEnvTest } from "../environment";
+import { isOnEnvTest } from "@/environment";
 
 let connection: MongoClient | null = null;
 
