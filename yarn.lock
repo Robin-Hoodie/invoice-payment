@@ -4877,7 +4877,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-environment-node@npm:*, jest-environment-node@npm:^27.5.1":
+"jest-environment-node@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-environment-node@npm:27.5.1"
   dependencies:
