@@ -3327,7 +3327,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.5.1"],
             ["jspdf", "npm:2.5.1"],
             ["mongodb", "npm:4.3.1"],
-            ["tiny-secp256k1", "npm:2.2.0"],
+            ["tiny-secp256k1", "npm:2.2.1"],
             ["ts-node-dev", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:1.1.8"],
             ["typescript", "patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"]
           ],
@@ -4893,7 +4893,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["canvg", "npm:3.0.10"],
             ["@babel/runtime", "npm:7.17.2"],
             ["@types/raf", "npm:3.4.0"],
-            ["core-js", "npm:3.21.0"],
+            ["core-js", "npm:3.21.1"],
             ["raf", "npm:3.4.1"],
             ["regenerator-runtime", "npm:0.13.9"],
             ["rgbcolor", "npm:1.0.1"],
@@ -5203,10 +5203,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["core-js", [
-        ["npm:3.21.0", {
-          "packageLocation": "./.yarn/unplugged/core-js-npm-3.21.0-9d2e98b782/node_modules/core-js/",
+        ["npm:3.21.1", {
+          "packageLocation": "./.yarn/unplugged/core-js-npm-3.21.1-4b064616b4/node_modules/core-js/",
           "packageDependencies": [
-            ["core-js", "npm:3.21.0"]
+            ["core-js", "npm:3.21.1"]
           ],
           "linkType": "HARD",
         }]
@@ -5565,10 +5565,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["dompurify", [
-        ["npm:2.3.5", {
-          "packageLocation": "./.yarn/cache/dompurify-npm-2.3.5-21d6008c6a-06a7883b5e.zip/node_modules/dompurify/",
+        ["npm:2.3.6", {
+          "packageLocation": "./.yarn/cache/dompurify-npm-2.3.6-0bc101c0e7-4b2bbf6bc6.zip/node_modules/dompurify/",
           "packageDependencies": [
-            ["dompurify", "npm:2.3.5"]
+            ["dompurify", "npm:2.3.6"]
           ],
           "linkType": "HARD",
         }]
@@ -7732,8 +7732,8 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["atob", "npm:2.1.2"],
             ["btoa", "npm:1.2.1"],
             ["canvg", "npm:3.0.10"],
-            ["core-js", "npm:3.21.0"],
-            ["dompurify", "npm:2.3.5"],
+            ["core-js", "npm:3.21.1"],
+            ["dompurify", "npm:2.3.6"],
             ["fflate", "npm:0.4.8"],
             ["html2canvas", "npm:1.4.1"]
           ],
@@ -9869,11 +9869,11 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["tiny-secp256k1", [
-        ["npm:2.2.0", {
-          "packageLocation": "./.yarn/cache/tiny-secp256k1-npm-2.2.0-1f4d6d70df-123ab0b216.zip/node_modules/tiny-secp256k1/",
+        ["npm:2.2.1", {
+          "packageLocation": "./.yarn/cache/tiny-secp256k1-npm-2.2.1-c67fa14eb1-89b6cef402.zip/node_modules/tiny-secp256k1/",
           "packageDependencies": [
-            ["tiny-secp256k1", "npm:2.2.0"],
-            ["uint8array-tools", "npm:0.0.6"]
+            ["tiny-secp256k1", "npm:2.2.1"],
+            ["uint8array-tools", "npm:0.0.7"]
           ],
           "linkType": "HARD",
         }]
@@ -10168,10 +10168,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         }]
       ]],
       ["uint8array-tools", [
-        ["npm:0.0.6", {
-          "packageLocation": "./.yarn/cache/uint8array-tools-npm-0.0.6-e416a829ae-303273da84.zip/node_modules/uint8array-tools/",
+        ["npm:0.0.7", {
+          "packageLocation": "./.yarn/cache/uint8array-tools-npm-0.0.7-96ca58a124-6ffc45c7d2.zip/node_modules/uint8array-tools/",
           "packageDependencies": [
-            ["uint8array-tools", "npm:0.0.6"]
+            ["uint8array-tools", "npm:0.0.7"]
           ],
           "linkType": "HARD",
         }]

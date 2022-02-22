@@ -1793,7 +1793,7 @@ __metadata:
     jest: ^27.4.7
     jspdf: ^2.5.1
     mongodb: ^4.3.1
-    tiny-secp256k1: ^2.2.0
+    tiny-secp256k1: ^2.2.1
     ts-node-dev: ^1.1.8
     typescript: ^4.5.5
   languageName: unknown
@@ -3270,9 +3270,9 @@ __metadata:
   linkType: hard
 
 "core-js@npm:^3.6.0, core-js@npm:^3.8.3":
-  version: 3.21.0
-  resolution: "core-js@npm:3.21.0"
-  checksum: 87df49aa2c5d0a521c52102b6669842dd30b334742e86dd4e0173c51230bc48d610060ab6de0f149766d188325b8c1b84598f901cf455674fe6c03ccc5c8026f
+  version: 3.21.1
+  resolution: "core-js@npm:3.21.1"
+  checksum: d68eddd831340ad5b24ac29c72fda022a43b17f194c4278b6b875a843283d316502cb4abd07f28631d6ebc4387f66aa06e2b1b3c8fd7e08096a751b5c63f6889
   languageName: node
   linkType: hard
 
@@ -3532,9 +3532,9 @@ __metadata:
   linkType: hard
 
 "dompurify@npm:^2.2.0":
-  version: 2.3.5
-  resolution: "dompurify@npm:2.3.5"
-  checksum: 06a7883b5ed0aed0da7c54606f3491d200ca427b8269834240110083c85908f96d7f7afdd56ee497fa6b2d500cb20b3026954219fec30b557cfea2535e0559c9
+  version: 2.3.6
+  resolution: "dompurify@npm:2.3.6"
+  checksum: 4b2bbf6bc68ebd776aec4a533cef74a5ae30391eed528f3df748af71da318afdc298b6f40449bef093b7454ffd2ae82656636560474de5a3b34316b762c85b12
   languageName: node
   linkType: hard
 
@@ -7364,12 +7364,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tiny-secp256k1@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "tiny-secp256k1@npm:2.2.0"
+"tiny-secp256k1@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "tiny-secp256k1@npm:2.2.1"
   dependencies:
-    uint8array-tools: 0.0.6
-  checksum: 123ab0b216931bc72ae2f6186d1b8b105e4cd8cc3127057e3c93469c28b4905cab7549a5cef6f8279e12c7866e1d80df5c8f2477c71c258569a2cbb4d6c2f6f4
+    uint8array-tools: 0.0.7
+  checksum: 89b6cef4020e6d0c39bca5607ac73ba97a9172724574e09c46dc43443d99d03084774342c29e4f9c4af1b78e6357332e2f5551169957475d4c041575f5b98828
   languageName: node
   linkType: hard
 
@@ -7613,10 +7613,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uint8array-tools@npm:0.0.6":
-  version: 0.0.6
-  resolution: "uint8array-tools@npm:0.0.6"
-  checksum: 303273da841e5d9d7f9be7837c70e5f06ebd963a1a88a84b4051e54fb44b50f1f44d3c89b0d555d1e8955c4207e94baba778bf07889c5d8d9662d16a364a1933
+"uint8array-tools@npm:0.0.7":
+  version: 0.0.7
+  resolution: "uint8array-tools@npm:0.0.7"
+  checksum: 6ffc45c7d2136757d63c6e556eb8345f908948618a9de37c805fec1249d989c265187b3fbef6cffc4ce5129083204829025b3c58800a0f24c8548e243d42ba13
   languageName: node
   linkType: hard
 
