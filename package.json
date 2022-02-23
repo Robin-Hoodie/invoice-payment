@@ -6,8 +6,8 @@
   "scripts": {
     "all:format": "prettier --ignore-unknown --write .",
     "all:format:check": "prettier --ignore-unknown --check .",
-    "all:lint": "yarn workspaces foreach -p run lint",
-    "all:test": "yarn workspaces foreach -p run test",
+    "all:lint": "yarn workspaces foreach -p run lint --color",
+    "all:test": "yarn workspaces foreach -p run test --color",
     "all:typecheck": "yarn workspaces foreach -p run typecheck",
     "backend:test": "yarn workspace @oreon/invoice-payment-backend test",
     "backend:dev": "yarn workspace @oreon/invoice-payment-backend dev",
@@ -19,7 +19,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
-    "eslint": "^8.7.0",
+    "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "husky": ">=6",
     "lint-staged": ">=10",
