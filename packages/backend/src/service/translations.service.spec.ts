@@ -11,7 +11,7 @@ const mockedGetTranslationsForNamespace = jest.mocked(
 );
 
 describe("Translations Service", () => {
-  it("should retrieve all translations in English for a given namespace", async () => {
+  it("should retrieve all translations in English for a given 'namespace'", async () => {
     mockedGetTranslationsForNamespace.mockResolvedValueOnce({
       namespace: "namespace",
       values: {
@@ -33,7 +33,8 @@ describe("Translations Service", () => {
     });
   });
 
-  it("should retrieve a translation in English by passing the namespace and key as a '/'delimited string", async () => {
+  it(`should retrieve a translation in English by passing 
+the 'namespace' and key as a '/'delimited string`, async () => {
     mockedGetTranslationsForNamespace.mockResolvedValueOnce({
       namespace: "namespace",
       values: {
@@ -58,6 +59,6 @@ describe("Translations Service", () => {
     });
     await expect(
       getTranslation("namespace/key-does-not-exist", "en")
-    ).rejects.toThrow('key "key-does-not-exist"');
+    ).rejects.toThrow("key 'key-does-not-exist'");
   });
 });

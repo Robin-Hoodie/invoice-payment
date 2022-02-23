@@ -17,7 +17,7 @@ export const getCustomer = async (nameShort: string) => {
   );
   if (!customer) {
     throw new Error(
-      `The customer with short name "${nameShort}" was not found!`
+      `The customer with 'nameShort' '${nameShort}' was not found!`
     );
   }
   return customer;

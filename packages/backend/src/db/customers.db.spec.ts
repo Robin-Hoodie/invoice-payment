@@ -24,7 +24,7 @@ describe("Customers DB", () => {
     await connectionClose();
   });
 
-  it(`should retrieve the customer info by nameShort while dropping 
+  it(`should retrieve the customer info by 'nameShort' while dropping 
 the properties 'nameShort' and '_id' from the result`, async () => {
     await collectionCustomers.insertOne({
       ...customerGoogle,
@@ -39,7 +39,7 @@ the properties 'nameShort' and '_id' from the result`, async () => {
       nameShort: "google",
     });
     await expect(getCustomer("short-name-does-not-exist")).rejects.toThrow(
-      'short name "short-name-does-not-exist"'
+      "'nameShort' 'short-name-does-not-exist'"
     );
   });
 });

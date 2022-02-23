@@ -28,7 +28,7 @@ const getTranslationByNamespaceAndKey = async (
     return translationForKey;
   }
   throw new Error(
-    `The key "${key}" was not found in the translations for namespace ${namespace}`
+    `The key '${key}' was not found in the translations for 'namespace' '${namespace}'`
   );
 };
 

@@ -16,7 +16,7 @@ const mockedGetTranslation = jest.mocked(getTranslation);
 const mockedGetCustomerFromDB = jest.mocked(getCustomerFromDB);
 
 describe("Customers Service", () => {
-  it("should retrieve the customer with its city and country translated", async () => {
+  it("should retrieve the customer with its 'place' and 'country' properties translated", async () => {
     mockedGetCustomerFromDB.mockResolvedValueOnce(customerGoogle);
     mockedGetTranslation.mockImplementation((translation) => {
       if (translation.includes("place")) {
@@ -34,7 +34,8 @@ describe("Customers Service", () => {
     });
   });
 
-  it("should find the project by nameShort if the project is included in the customer's projects", () => {
+  it(`should find the project by 'nameShort' if the project 
+is included in the customer's 'projects' property`, () => {
     expect(
       getProjectByNameShort(customerGoogleWithProject, "projectA")
     ).toEqual({
@@ -50,9 +51,10 @@ describe("Customers Service", () => {
     });
   });
 
-  it("should throw an error if the nameShort passed does not match any of the customer's project nameShort properties", () => {
+  it(`should throw an error if the 'nameShort' passed does not match any 
+of the customer's 'projects.nameShort' properties`, () => {
     expect(() =>
       getProjectByNameShort(customerGoogleWithProject, "projectB")
-    ).toThrow('Project with nameShort "projectB"');
+    ).toThrow("Project with 'nameShort' 'projectB'");
   });
 });

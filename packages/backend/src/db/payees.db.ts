@@ -16,7 +16,7 @@ export const getPayee = async (nameShort: string) => {
     }
   );
   if (!payee) {
-    throw new Error(`The payee with short name "${nameShort}" was not found!`);
+    throw new Error(`The payee with 'nameShort' '${nameShort}' was not found!`);
   }
   return payee;
 };

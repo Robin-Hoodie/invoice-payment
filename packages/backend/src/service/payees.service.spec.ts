@@ -10,7 +10,7 @@ const mockedGetTranslation = jest.mocked(getTranslation);
 const mockedGetPayeeFromDB = jest.mocked(getPayeeFromDB);
 
 describe("Payees Service", () => {
-  it("should retrieve the payee with its city and country translated", async () => {
+  it("should retrieve the payee with its 'place' and 'country' translated", async () => {
     mockedGetPayeeFromDB.mockResolvedValueOnce(payeeBitcoinNV);
     mockedGetTranslation.mockImplementation((translation) => {
       if (translation.includes("place")) {

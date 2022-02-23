@@ -18,7 +18,7 @@ export const getTranslationsForNamespace = async (namespace: string) => {
   );
   if (!translationsForNamespace) {
     throw new Error(
-      `Translations for the namespace "${namespace}" were not found!`
+      `Translations for 'namespace' '${namespace}' were not found!`
     );
   }
   return translationsForNamespace;

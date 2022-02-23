@@ -26,7 +26,7 @@ describe("Translations DB", () => {
     await connectionClose();
   });
 
-  it(`should retrieve the translations by nameSpace while dropping 
+  it(`should retrieve the translations by 'namespace' while dropping 
 the property '_id' from the result`, async () => {
     await collectionTranslations.insertOne({
       namespace: "namespace",
@@ -68,6 +68,6 @@ the property '_id' from the result`, async () => {
     });
     await expect(
       getTranslationsForNamespace("namespace-does-not-exist")
-    ).rejects.toThrow('namespace "namespace-does-not-exist"');
+    ).rejects.toThrow("'namespace' 'namespace-does-not-exist'");
   });
 });

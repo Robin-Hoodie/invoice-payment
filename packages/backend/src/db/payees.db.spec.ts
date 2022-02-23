@@ -24,7 +24,7 @@ describe("Payees DB", () => {
     await connectionClose();
   });
 
-  it(`should retrieve the payee by nameShort while dropping 
+  it(`should retrieve the payee by 'nameShort' while dropping 
 the properties 'nameShort' and '_id' from the result`, async () => {
     await collectionPayees.insertOne({
       ...payeeBitcoinNV,
@@ -39,7 +39,7 @@ the properties 'nameShort' and '_id' from the result`, async () => {
       nameShort: "bitcoin",
     });
     await expect(getPayee("short-name-does-not-exist")).rejects.toThrow(
-      'short name "short-name-does-not-exist"'
+      "'nameShort' 'short-name-does-not-exist'"
     );
   });
 });
