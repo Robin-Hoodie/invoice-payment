@@ -1,22 +1,8 @@
-import jsPDF from "jspdf";
+import { Customer } from "@/db/types-customers";
+import { Payee } from "@/db/types-payees";
 import { CurrencyFiat } from "@/types";
 import { currencyToSymbol } from "@/utils/utils-currency";
-
-const round = (number: number, fractionDigits = 2) =>
-  Number(number.toFixed(fractionDigits));
-
-export const getOffsetsX = ({
-  internal: { pageSize },
-}: Pick<jsPDF, "internal">) => {
-  const docWidth = pageSize.getWidth();
-  return {
-    LEFT: round(docWidth * 0.1),
-    MIDDLE_LEFT: round(docWidth * 0.26),
-    MIDDLE: round(docWidth * 0.42),
-    MIDDLE_RIGHT: round(docWidth * 0.58),
-    RIGHT: round(docWidth * 0.74),
-  };
-};
+import { NestedPick } from "@/types/types-utility";
 
 export const formatPriceForCurrency = (
   price: number,
@@ -38,3 +24,13 @@ export const formatPriceForCurrency = (
   }
   return `${currencySymbol}${priceFormatted}`;
 };
+
+const VAT_PERCENTAGE_DOMESTIC = 21;
+
+export const getVatPercentage = (
+  customer: NestedPick<Customer, "address", "country">,
+  payee: NestedPick<Payee, "address", "country">
+) =>
+  customer.address.country === payee.address.country
+    ? VAT_PERCENTAGE_DOMESTIC
+    : 0;

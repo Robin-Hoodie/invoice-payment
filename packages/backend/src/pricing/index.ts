@@ -14,7 +14,7 @@ export const getPriceForBitcoinInCurrencyFiat = async (currency: string) => {
   const supportedCurrencies = await getSupportedCurrencies();
   if (!isSupportedCurrency(supportedCurrencies, currency)) {
     throw new Error(
-      `Currency ${currency} is not supported by the CoinGecko API`
+      `Currency '${currency}' is not supported by the CoinGecko API`
     );
   }
 
