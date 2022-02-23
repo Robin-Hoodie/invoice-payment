@@ -26,10 +26,10 @@ import { getVatPercentage } from "@/utils/utils-pdf";
 import { getOffsetsX, OffsetsX } from "./helpers/layout";
 import { Customer, ProjectHourly, ProjectReferral } from "@/db/types-customers";
 import { Payee } from "@/db/types-payees";
+import { getNextInvoiceNumberForYear } from "@/service/invoices.service";
 
 interface PDFGenerationOptions {
   lang: Language;
-  invoiceNumber: string;
   customerNameShort: string;
   projectNameShort: string;
   payeeNameShort: string;
@@ -41,7 +41,6 @@ interface PDFGenerationOptions {
 
 export const generatePdf = async ({
   lang,
-  invoiceNumber,
   customerNameShort,
   payeeNameShort,
   projectNameShort,
@@ -59,6 +58,7 @@ export const generatePdf = async ({
     "textStatic",
     lang
   );
+  const invoiceNumber = await getNextInvoiceNumberForYear(dateInvoice);
   const offsetsX = getOffsetsX(docInvoice);
 
   writeSections(docInvoice, {

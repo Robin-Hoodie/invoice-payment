@@ -1,6 +1,7 @@
 import { getLatestInvoiceForYear } from "@/db/invoices.db";
 
-export const getNextInvoiceNumberForYear = async (year: number) => {
+export const getNextInvoiceNumberForYear = async (date: Date) => {
+  const year = date.getFullYear();
   const invoice = await getLatestInvoiceForYear(year);
   const yearPrefix = year.toString().slice(-2);
   if (invoice) {
