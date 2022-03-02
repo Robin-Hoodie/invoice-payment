@@ -14,15 +14,9 @@ app.get("/price-btc/:currency", ({ params: { currency } }, res, next) => {
     .catch(next);
 });
 
-app.post("/invoice/generate", async (_, res, next) => {
+app.post("/invoice/generate", async ({ body }, res, next) => {
   try {
-    const invoiceSaveLocation = await generatePdf({
-      lang: "en",
-      customerNameShort: "talented",
-      payeeNameShort: "oreonIT",
-      projectNameShort: "cognite",
-      hoursWorked: 25,
-    });
+    const invoiceSaveLocation = await generatePdf(body);
     res.send({ invoiceSaveLocation });
   } catch (error) {
     next(error);

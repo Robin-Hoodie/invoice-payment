@@ -5216,7 +5216,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["core-js", [
         ["npm:3.21.1", {
-          "packageLocation": "./.yarn/unplugged/core-js-npm-3.21.1-4b064616b4/node_modules/core-js/",
+          "packageLocation": "./.yarn/cache/core-js-npm-3.21.1-4b064616b4-d68eddd831.zip/node_modules/core-js/",
           "packageDependencies": [
             ["core-js", "npm:3.21.1"]
           ],
@@ -8275,7 +8275,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       ]],
       ["mongodb-memory-server", [
         ["npm:7.3.6", {
-          "packageLocation": "./.yarn/unplugged/mongodb-memory-server-npm-7.3.6-1008c38beb/node_modules/mongodb-memory-server/",
+          "packageLocation": "./.yarn/cache/mongodb-memory-server-npm-7.3.6-1008c38beb-88cc0240ad.zip/node_modules/mongodb-memory-server/",
           "packageDependencies": [
             ["mongodb-memory-server", "npm:7.3.6"],
             ["mongodb-memory-server-core", "npm:7.3.6"],
