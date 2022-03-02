@@ -1,12 +1,18 @@
 import { Document, MongoClient } from "mongodb";
-import { isOnEnvTest } from "@/environment";
+import {
+  isOnEnvTest,
+  mongoAdminPassword,
+  mongoAdminUsername,
+  mongoDatabase,
+} from "@/environment";
 
 let connection: MongoClient | null = null;
 
 export const connectionSetup = async () => {
   const connectionString = isOnEnvTest
     ? global.__MONGO_URI__
-    : `mongodb://${process.env.MONGO_ADMIN_USERNAME}:${process.env.MONGO_ADMIN_PASSWORD}@localhost:27017/?maxPoolSize=20&w=majority`;
+    : `mongodb://${mongoAdminUsername}:${mongoAdminPassword}
+@localhost:27017/${mongoDatabase}?maxPoolSize=20&w=majority`;
   if (connection) {
     console.warn(
       "Connection to MongoDB has already been initialized. Not initializing again.."

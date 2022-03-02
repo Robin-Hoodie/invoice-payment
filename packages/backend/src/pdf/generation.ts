@@ -26,7 +26,10 @@ import { getVatPercentage } from "@/utils/utils-pdf";
 import { getOffsetsX, OffsetsX } from "./helpers/layout";
 import { Customer, ProjectHourly, ProjectReferral } from "@/db/types-customers";
 import { Payee } from "@/db/types-payees";
-import { getNextInvoiceNumberForYear } from "@/service/invoices.service";
+import {
+  getNextInvoiceNumberForYear,
+  insertInvoice,
+} from "@/service/invoices.service";
 
 interface PDFGenerationOptions {
   lang: Language;
@@ -50,7 +53,6 @@ export const generatePdf = async ({
   invoicedToEndCustomer,
 }: PDFGenerationOptions) => {
   const dateDue = addDays(dateInvoice, dueInDays);
-  const docInvoice = createjsPDFEnhanced();
   const customer = await getCustomer(customerNameShort, lang);
   const project = getProjectByNameShort(customer, projectNameShort);
   const payee = await getPayee(payeeNameShort, lang);
@@ -59,6 +61,8 @@ export const generatePdf = async ({
     lang
   );
   const invoiceNumber = await getNextInvoiceNumberForYear(dateInvoice);
+
+  const docInvoice = createjsPDFEnhanced();
   const offsetsX = getOffsetsX(docInvoice);
 
   writeSections(docInvoice, {
@@ -79,7 +83,8 @@ export const generatePdf = async ({
     `invoice-${invoiceNumber}.pdf`
   );
   docInvoice.save(invoiceSaveLocation);
-  console.log(`Invoice generated and saved to ${invoiceSaveLocation}`);
+  await insertInvoice(invoiceNumber, dateInvoice);
+  return invoiceSaveLocation;
 };
 
 interface WriteSectionOptions {
