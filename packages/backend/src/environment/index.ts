@@ -7,15 +7,15 @@ export const isOnEnvProduction = process.env.NODE_ENV === "production";
 const envVariableErrorMessage = (envVariable: string) =>
   `Env variable ${envVariable} should be set!`;
 
-if (!process.env.MONGO_INITDB_DATABASE) {
+if (!isOnEnvTest && !process.env.MONGO_INITDB_DATABASE) {
   throw new Error(envVariableErrorMessage("MONGO_INITDB_DATABASE"));
 }
-if (!process.env.MONGO_INITDB_DATABASE_ADMIN_USERNAME) {
+if (!isOnEnvTest && !process.env.MONGO_INITDB_DATABASE_ADMIN_USERNAME) {
   throw new Error(
     envVariableErrorMessage("MONGO_INITDB_DATABASE_ADMIN_USERNAME")
   );
 }
-if (!process.env.MONGO_INITDB_DATABASE_ADMIN_PASSWORD) {
+if (!isOnEnvTest && !process.env.MONGO_INITDB_DATABASE_ADMIN_PASSWORD) {
   throw new Error(
     envVariableErrorMessage("MONGO_INITDB_DATABASE_ADMIN_USERNAME")
   );
