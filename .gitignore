@@ -14,3 +14,4 @@
 packages/backend/globalConfig.json
 
 .env
+.env.mongo

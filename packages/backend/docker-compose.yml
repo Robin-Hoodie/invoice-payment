@@ -9,11 +9,8 @@ services:
       - ./mongodb/workaround:/home/mongodb
     ports:
       - 27017:27017
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME
-      - MONGO_INITDB_ROOT_PASSWORD
-      - MONGO_INITDB_DATABASE
-      - MONGO_INITDB_DATABASE_ADMIN_USERNAME
-      - MONGO_INITDB_DATABASE_ADMIN_PASSWORD
+    env_file:
+      - .env
+      - .env.mongo
 volumes:
   invoice-data:
