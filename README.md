@@ -2,11 +2,16 @@
 
 ![CI](https://github.com/Robin-Hoodie/invoice-payment/actions/workflows/code-quality.yml/badge.svg)
 
-Small web application in which we display generated (SegWit) addresses that can be used to complete payment for a particular invoice.
+_Note: this is very much a work in progress_
 
-These addresses are to be derived from a supplied xpub or zpub key. In the future I plan to also support extended keys that can generate Taproot addresses.
+Monorepo containing a web - and backend application which should make it possible to generate invoices which will contain a QR-code and/or link to allow payment to BTC addresses. These addresses will be derived from an extended public key.
 
-Some code in this repository might not be used eventually, as I also see this as a pet project that'll teach me more about the technicals behind Bitcoin.
+Some code in this repository might not be used eventually, as I also see this as a pet project that'll teach me more about the technicals behind Bitcoin. (e.g. [secp256k1 math](packages/backend/src/wallet/secp256k1-math.ts))
+
+## Installation
+
+- Clone repo
+- Run `yarn` to install deps
 
 ## Backend
 
@@ -37,3 +42,12 @@ We need these environment variables in the MongoDB container as these are used f
 We need these environment variables in the application as they are used for connecting to the MongoDB container.
 
 More info on the above can be found in [the mongo image docs](https://hub.docker.com/_/mongo) & [the mongo docs](https://docs.mongodb.com/manual/security/)
+
+#### Future plans
+
+- Add support for generation of BTC addresses based on TapRoot extended key (currently xpub and zpubs are supported)
+- Add support for lightning payments
+- Add support for Ether payments
+- Prevent reuse of addresses by checking either a local or remote full node whether they contain any balance yet
+- Notify recipient when payment's been received and had at least 1 confirmation
+- ...
