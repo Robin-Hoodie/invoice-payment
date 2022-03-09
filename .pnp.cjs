@@ -3326,6 +3326,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["dotenv", "npm:16.0.0"],
             ["eslint", "npm:8.9.0"],
             ["express", "npm:4.17.2"],
+            ["express-validator", "npm:6.14.0"],
             ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.5.1"],
             ["jspdf", "npm:2.5.1"],
             ["mongodb", "npm:4.3.1"],
@@ -6022,6 +6023,17 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["type-is", "npm:1.6.18"],
             ["utils-merge", "npm:1.0.1"],
             ["vary", "npm:1.1.2"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["express-validator", [
+        ["npm:6.14.0", {
+          "packageLocation": "./.yarn/cache/express-validator-npm-6.14.0-34a160ed56-e43ba1f18a.zip/node_modules/express-validator/",
+          "packageDependencies": [
+            ["express-validator", "npm:6.14.0"],
+            ["lodash", "npm:4.17.21"],
+            ["validator", "npm:13.7.0"]
           ],
           "linkType": "HARD",
         }]
@@ -10207,6 +10219,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/istanbul-lib-coverage", "npm:2.0.4"],
             ["convert-source-map", "npm:1.8.0"],
             ["source-map", "npm:0.7.3"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["validator", [
+        ["npm:13.7.0", {
+          "packageLocation": "./.yarn/cache/validator-npm-13.7.0-624277e841-2b83283de1.zip/node_modules/validator/",
+          "packageDependencies": [
+            ["validator", "npm:13.7.0"]
           ],
           "linkType": "HARD",
         }]

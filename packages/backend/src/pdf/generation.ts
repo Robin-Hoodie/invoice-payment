@@ -42,7 +42,7 @@ interface PDFGenerationOptions {
   invoicedToEndCustomer?: number;
 }
 
-export const generatePdf = async ({
+export const generateInvoice = async ({
   lang,
   customerNameShort,
   payeeNameShort,

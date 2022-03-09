@@ -1,4 +1,4 @@
-import { generatePdf } from "./generation";
+import { generateInvoice } from "./generation";
 import { getTranslationsForNamespaceAndLanguage } from "@/service/translations.service";
 import { getCustomer } from "@/service/customers.service";
 import { getPayee } from "@/service/payees.service";
@@ -97,14 +97,14 @@ describe("Generate", () => {
     mockedGetNextInvoiceNumberForYear
       .mockResolvedValueOnce("#20021")
       .mockResolvedValueOnce("#20022");
-    await generatePdf({
+    await generateInvoice({
       lang: "en",
       customerNameShort: "talented",
       payeeNameShort: "oreonIT",
       projectNameShort: "cognite",
       hoursWorked: 100,
     });
-    await generatePdf({
+    await generateInvoice({
       lang: "en",
       customerNameShort: "talented",
       payeeNameShort: "oreonIT",
