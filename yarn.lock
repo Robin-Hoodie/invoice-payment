@@ -1794,6 +1794,7 @@ __metadata:
     express: ^4.17.2
     express-validator: ^6.14.0
     jest: ^27.4.7
+    jest-watch-typeahead: ^0.6.5
     jspdf: ^2.5.1
     mongodb: ^4.3.1
     tiny-secp256k1: ^2.2.1
@@ -2337,7 +2338,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ansi-escapes@npm:^4.2.1, ansi-escapes@npm:^4.3.0":
+"ansi-escapes@npm:^4.2.1, ansi-escapes@npm:^4.3.0, ansi-escapes@npm:^4.3.1":
   version: 4.3.2
   resolution: "ansi-escapes@npm:4.3.2"
   dependencies:
@@ -5072,17 +5073,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jest-regex-util@npm:^27.0.0, jest-regex-util@npm:^27.5.1":
+  version: 27.5.1
+  resolution: "jest-regex-util@npm:27.5.1"
+  checksum: d45ca7a9543616a34f7f3079337439cf07566e677a096472baa2810e274b9808b76767c97b0a4029b8a5b82b9d256dee28ef9ad4138b2b9e5933f6fac106c418
+  languageName: node
+  linkType: hard
+
 "jest-regex-util@npm:^27.4.0":
   version: 27.4.0
   resolution: "jest-regex-util@npm:27.4.0"
   checksum: 222e4aacec601fd2cfdfee74adb8d324fef672f77577a7c2220893ec1a62031a2640388fce8d0bd8be2e4537da1ab40aa74dba60ac531a23b2643b15c65014ac
-  languageName: node
-  linkType: hard
-
-"jest-regex-util@npm:^27.5.1":
-  version: 27.5.1
-  resolution: "jest-regex-util@npm:27.5.1"
-  checksum: d45ca7a9543616a34f7f3079337439cf07566e677a096472baa2810e274b9808b76767c97b0a4029b8a5b82b9d256dee28ef9ad4138b2b9e5933f6fac106c418
   languageName: node
   linkType: hard
 
@@ -5266,7 +5267,24 @@ __metadata:
   languageName: node
   linkType: hard
 
-"jest-watcher@npm:^27.5.1":
+"jest-watch-typeahead@npm:^0.6.5":
+  version: 0.6.5
+  resolution: "jest-watch-typeahead@npm:0.6.5"
+  dependencies:
+    ansi-escapes: ^4.3.1
+    chalk: ^4.0.0
+    jest-regex-util: ^27.0.0
+    jest-watcher: ^27.0.0
+    slash: ^3.0.0
+    string-length: ^4.0.1
+    strip-ansi: ^6.0.0
+  peerDependencies:
+    jest: ^26.0.0 || ^27.0.0
+  checksum: 01f5113e51cb49365661986144bfc6520d9e8d74d8a5d7527d5edb8e2bc8f128f6cf7baa512bb6bb35fdbb86fa92f0b26a4a7a4db66ac4dc3f7ea603ba48ca81
+  languageName: node
+  linkType: hard
+
+"jest-watcher@npm:^27.0.0, jest-watcher@npm:^27.5.1":
   version: 27.5.1
   resolution: "jest-watcher@npm:27.5.1"
   dependencies:

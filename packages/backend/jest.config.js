@@ -9,4 +9,8 @@ module.exports = {
   },
   // https://github.com/shelfio/jest-mongodb#6-jest-watch-mode-gotcha
   watchPathIgnorePatterns: ["<rootDir>/globalConfig.json"],
+  watchPlugins: [
+    "jest-watch-typeahead/filename",
+    "jest-watch-typeahead/testname",
+  ],
 };

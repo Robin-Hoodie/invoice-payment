@@ -3328,6 +3328,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["express", "npm:4.17.2"],
             ["express-validator", "npm:6.14.0"],
             ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.5.1"],
+            ["jest-watch-typeahead", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:0.6.5"],
             ["jspdf", "npm:2.5.1"],
             ["mongodb", "npm:4.3.1"],
             ["tiny-secp256k1", "npm:2.2.1"],
@@ -7545,6 +7546,35 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["jest-get-type", "npm:27.5.1"],
             ["leven", "npm:3.1.0"],
             ["pretty-format", "npm:27.5.1"]
+          ],
+          "linkType": "HARD",
+        }]
+      ]],
+      ["jest-watch-typeahead", [
+        ["npm:0.6.5", {
+          "packageLocation": "./.yarn/cache/jest-watch-typeahead-npm-0.6.5-aacaa3cef5-01f5113e51.zip/node_modules/jest-watch-typeahead/",
+          "packageDependencies": [
+            ["jest-watch-typeahead", "npm:0.6.5"]
+          ],
+          "linkType": "SOFT",
+        }],
+        ["virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:0.6.5", {
+          "packageLocation": "./.yarn/__virtual__/jest-watch-typeahead-virtual-da466326fc/0/cache/jest-watch-typeahead-npm-0.6.5-aacaa3cef5-01f5113e51.zip/node_modules/jest-watch-typeahead/",
+          "packageDependencies": [
+            ["jest-watch-typeahead", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:0.6.5"],
+            ["@types/jest", "npm:27.4.0"],
+            ["ansi-escapes", "npm:4.3.2"],
+            ["chalk", "npm:4.1.2"],
+            ["jest", "virtual:225a27566590724051040b2915927dc02818b6f5aa6fa77203f9d66e1c492f6204c4565d581df06347ed2da334531eb3ba5d3932b692e9f49166a47f17d738a3#npm:27.5.1"],
+            ["jest-regex-util", "npm:27.5.1"],
+            ["jest-watcher", "npm:27.5.1"],
+            ["slash", "npm:3.0.0"],
+            ["string-length", "npm:4.0.2"],
+            ["strip-ansi", "npm:6.0.1"]
+          ],
+          "packagePeers": [
+            "@types/jest",
+            "jest"
           ],
           "linkType": "HARD",
         }]
