@@ -1,2 +1,9 @@
 env:
   node: true
+settings:
+  import/resolver:
+    babel-module:
+      # See https://github.com/tleunen/eslint-import-resolver-babel-module/issues/99
+      extensions:
+        - ".js"
+        - ".ts"
