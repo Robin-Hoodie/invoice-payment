@@ -1,8 +1,6 @@
 /* global module, require */
 module.exports = {
   root: true,
-  parser: "@typescript-eslint/parser",
-  plugins: ["@typescript-eslint"],
   extends: [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -22,12 +20,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: [
-        "./packages/backend/jest-resolver.js",
-        "./packages/backend/mongodb/seed/*.js",
-        ".eslintrc.js",
-        "babel.config.js",
-      ],
+      files: [".eslintrc.js", "babel.config.js"],
       rules: {
         "@typescript-eslint/no-var-requires": "off",
       },
