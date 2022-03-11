@@ -31,6 +31,7 @@ export const setupEndpoints = () => {
   app.get("/invoice/:invoiceHash/pay", ({ params: { invoiceHash } }, res) => {
     // Retrieve invoice by hash
     // Generate BTC address
+    console.log(invoiceHash);
     res.send("Hello, world!");
   });
 

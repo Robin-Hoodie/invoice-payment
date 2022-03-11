@@ -60,7 +60,7 @@ while also dropping '_id' from the result`, async () => {
         date: new Date(2021, 0, 1),
       },
     ]);
-    expect(await getLatestInvoiceForYear(2022)).toEqual(null);
+    expect(await getLatestInvoiceForYear(2022)).toBeNull();
   });
 
   it("should insert the invoice", async () => {

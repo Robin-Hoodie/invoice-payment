@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "babel-watch -e .ts,.js ./src/index.ts",
     "start-docker": "docker-compose up -d",
-    "lint": "eslint . --ext .ts,.js",
+    "lint": "eslint . --ext .ts,.js --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "test": "jest"
   },
@@ -37,7 +37,7 @@
     "babel-watch": "^7.7.0",
     "eslint": "^8.9.0",
     "eslint-import-resolver-babel-module": "^5.3.1",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "jest-watch-typeahead": "^0.6.5",
     "typescript": "^4.5.5"
   }

@@ -17,6 +17,6 @@ describe("Derivation", () => {
   it("should throw if index is 2^31", () => {
     expect(() =>
       generateAddressFromExtendedPubKey(segWitAccountBTC.extendedKey, 2 ** 31)
-    ).toThrowError("must be smaller");
+    ).toThrow("must be smaller");
   });
 });
