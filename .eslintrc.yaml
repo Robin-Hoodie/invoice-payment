@@ -8,6 +8,11 @@ extends:
   - plugin:import/recommended
   - plugin:import/typescript
   - prettier
+rules:
+  no-warning-comments:
+    - error
+    - terms:
+        - todo
 overrides:
   - files:
       - "./packages/backend/jest-resolver.js"
