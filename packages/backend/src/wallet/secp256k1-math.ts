@@ -41,7 +41,7 @@ const extractCoordinates = (point: Buffer) => {
 };
 
 const bigIntTo32ByteHex = (number: bigint) =>
-  number.toString(16).padStart(32, "0");
+  number.toString(16).padStart(64, "0");
 
 /**
  * This accounts for modulo of negative numbers, see below:
